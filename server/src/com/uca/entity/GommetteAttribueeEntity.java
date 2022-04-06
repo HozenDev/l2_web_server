@@ -1,6 +1,8 @@
+package com.uca.entity;
+
 import java.util.Date;
 
-public class GommetteAttribuee {
+public class GommetteAttribueeEntity {
     private int id;
     private int idStudent;
     private int idGommette;

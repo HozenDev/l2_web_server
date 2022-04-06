@@ -1,13 +1,15 @@
+package com.uca.entity;
+
 import java.util.ArrayList;
 
-public class Eleve {
+public class EleveEntity {
 
-    private ArrayList<GommetteAttribuee> listGommettes;
+    private ArrayList<GommetteAttribueeEntity> listGommettes;
     private int id;
     private String lastname;
     private String firstname;
     
-    public Eleve(String lastname, String firstname, int id) {
+    public EleveEntity(String lastname, String firstname, int id) {
 	this.lastname = lastname;
 	this.firstname = firstname;
 	this.id = id;
@@ -16,7 +18,7 @@ public class Eleve {
 
     // Getters //
     
-    public String getGommette(int index) {
+    public GommetteAttribueeEntity getGommette(int index) {
 	return this.listGommettes.get(index);
     }
 
@@ -34,7 +36,7 @@ public class Eleve {
 
     // Setters //
 
-    public void setGommette(GommetteAttribuee src) {
+    public void setGommette(GommetteAttribueeEntity src) {
 	this.listGommettes.add(src);
     }
 
@@ -43,7 +45,7 @@ public class Eleve {
     }
 
     public void setFirstName(String firstname) {
-	this.firstname = firsname;
+	this.firstname = firstname;
     }
 
     public void setId(int id) {

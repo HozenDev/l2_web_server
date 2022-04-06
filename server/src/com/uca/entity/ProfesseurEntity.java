@@ -1,14 +1,16 @@
+package com.uca.entity;
+
 import java.util.ArrayList;
 
-public class Professeur {
+public class ProfesseurEntity {
 
     private int id;
     private String lastname;
     private String firstname;
     private String classe;
-    private ArrayList<GommetteAttribuee> listGomette;
+    private ArrayList<GommetteAttribueeEntity> listGommettes;
 
-    public Professeur(String lastname, String firstname, int id) {
+    public ProfesseurEntity(String lastname, String firstname, int id) {
 	this.lastname = lastname;
 	this.firstname = firstname;
 	this.id = id;
@@ -25,15 +27,15 @@ public class Professeur {
     }
 
     public String getFirstName() {
-	return this.firsname;
+	return this.firstname;
     }
 
     public String getClasse() {
 	return this.classe;
     }
 
-    public getGommette(int index) {
-	GommetteAttribuee gA;
+    public GommetteAttribueeEntity getGommette(int index) {
+	GommetteAttribueeEntity gA = new GommetteAttribueeEntity();
 	try {
 	    gA = this.listGommettes.get(index);
 	}
@@ -61,7 +63,7 @@ public class Professeur {
 	this.classe = classe;
     }
 
-    public void setGommette(GommetteAttribuee src) {
+    public void setGommette(GommetteAttribueeEntity src) {
 	this.listGommettes.add(src);
     }
 }
