@@ -7,4 +7,10 @@ public class GommetteAttribuee {
     private int idProf;
     private Date date;
     private String behavior;
+
+    public GommetteAttribueeEntity() {
+	// Ignored
+    }
+    
+    // Getters //
 }
