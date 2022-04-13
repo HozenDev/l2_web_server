@@ -35,9 +35,5 @@ public class StartServer {
         get("/gommettesAttribuees", (req, res) -> {
             return GommetteAttribueeGUI.getAllUsers();
         });	
-
-        get("/gommettesAttribuees.create", (req, res) -> {
-            return GommetteAttribueeGUI.create();
-        });	
     }
 }
