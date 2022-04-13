@@ -20,7 +20,7 @@ public class GommetteAttribueeDAO extends _Generic<GommetteAttribueeEntity> {
 		entity.setIdProf(resultSet.getInt("id_prof"));
 		entity.setIdGommette(resultSet.getInt("id_gommette"));
 		entity.setDate(resultSet.getString("date"));
-		entity.setBehavior(resultSet.getString("behavior"));		
+		entity.setBehavior(resultSet.getString("behavior"));
 
                 entities.add(entity);
             }
