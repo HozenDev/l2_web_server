@@ -13,6 +13,9 @@ public class EleveEntity {
 	this.listGommettes = new ArrayList<>();
     }
 
+    public String strListGomettes() {
+        this.listGommettes.strListGomettes();
+    }
     // Getters //
     
     public GommetteAttribueeEntity getGommette(int index) {
