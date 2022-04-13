@@ -1,6 +1,7 @@
 package com.uca.entity;
 
 import java.util.ArrayList;
+import java.sql.*;
 
 public class ProfesseurEntity {
 
@@ -61,7 +62,32 @@ public class ProfesseurEntity {
 	this.classe = classe;
     }
 
-    public void setGommette(GommetteAttribueeEntity src) {
-	this.listGommettes.add(src);
+    public void setGommette(String src) {
+	String[] srcSplit = src.split(";");
+	for (String s: srcSplit) {
+            PreparedStatement preparedStatement =
+		this.connect.prepareStatement("SELECT * FROM gommettesAttribuees INNER JOIN professeurs ON gommettesAttribuees.id == ?;");
+	    prepareStatement.setInt(1, Integer.parseInt(s));
+            ResultSet resultSet = preparedStatement.executeQuery();
+	    GommetteAttribueeEntity entity = new GommetteAttribueeEntity();
+	    entity.setId(resultSet.getInt("id"));
+	    entity.setIdStudent(resultSet.getInt("id_student"));
+	    entity.setIdProf(resultSet.getInt("id_prof"));
+	    entity.setIdGommette(resultSet.getInt("id_gommette"));
+	    entity.setDate(resultSet.getString("date"));
+	    entity.setBehavior(resultSet.getString("behavior"));
+	    this.listGommettes.add(entity);
+	}
+    }
+
+    // list String
+
+    public String strListGommette() {
+	StringBuilder s = new StringBuilder();
+	for (GommetteAttribueeEntity g: this.listGommettes) {
+	    s.append(g.toString());
+	    s.append(";");
+	}
+	return s.toString();
     }
 }

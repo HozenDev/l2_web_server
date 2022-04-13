@@ -63,4 +63,9 @@ public class GommetteAttribueeEntity {
     public void setBehavior(String behavior) {
 	this.behavior = behavior;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Le professeur %d a mis la gommette %d à l'élève %d, le %s pour motif : '%s'.", idProf, idGommette, idStudent, date, behavior);
+    }    
 }

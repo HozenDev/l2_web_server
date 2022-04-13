@@ -31,7 +31,7 @@ public class _Initializer {
 
 	    statement.executeUpdate();
 	    // Personal tables
-            statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS professeurs (id int primary key auto_increment, firstname varchar(100), lastname varchar(100)); ");
+            statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS professeurs (id int primary key auto_increment, firstname varchar(100), lastname varchar(100)), listGommettes varchar(100); ");
 	    statement.executeUpdate();
 	    statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS eleves (id int primary key auto_increment, firstname varchar(100), lastname varchar(100)); ");
 	    statement.executeUpdate();
