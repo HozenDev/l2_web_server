@@ -17,5 +17,16 @@ import java.util.Date;" 0 1 (fontified t) 1 7 (face font-lock-keyword-face fonti
 ([nil nil ((nil rear-nonsticky nil 1275 . 1276) (nil fontified nil 1219 . 1276) (nil fontified nil 1218 . 1219) (nil fontified nil 1216 . 1218) (nil fontified nil 1215 . 1216) (nil fontified nil 1186 . 1215) (nil fontified nil 1185 . 1186) (nil fontified nil 1073 . 1185) (1073 . 1276)) nil (25174 31180 908203 160000) 0 nil])
 ([nil nil ((1073 . 1077)) nil (25174 31180 908192 167000) 0 nil])
 ([nil nil ((1220 . 1221) (t 25174 31180 921601 38000)) nil (25174 31186 760201 962000) 0 nil])
-([nil current ((#("s" 0 1 (fontified t clang-format+-chg chg face font-lock-string-face)) . -1220) (undo-tree-id2 . -1) (undo-tree-id3 . -1) 1221) nil (25174 31186 760193 782000) 0 nil])
+([nil nil ((#("s" 0 1 (fontified t clang-format+-chg chg face font-lock-string-face)) . -1220) (undo-tree-id2 . -1) (undo-tree-id3 . -1) 1221) nil (25174 31186 760193 782000) 0 nil])
+([nil nil ((1118 . 1496) (#("        return String.format(\"Le professeur %d a mis la gommette %d à l'élève %d, le %s pour motif : '%s'.\", idProf, idGommette, idStudent, date, behavior);
+    }    " 0 8 (fontified t) 8 14 (fontified t face font-lock-keyword-face) 14 29 (fontified t) 29 71 (fontified t face font-lock-string-face) 71 72 (fontified t face font-lock-string-face) 72 101 (fontified t face font-lock-string-face) 101 102 (fontified t face font-lock-string-face) 102 103 (fontified t face font-lock-string-face) 103 104 (fontified t face font-lock-string-face) 104 105 (fontified t face font-lock-string-face) 105 107 (fontified t face font-lock-string-face) 107 157 (fontified t) 157 161 (fontified t) 161 162 (rear-nonsticky t fontified t) 162 166 (fontified t)) . 1118) (undo-tree-id28 . -102) (undo-tree-id29 . -162) (undo-tree-id30 . -157) (undo-tree-id31 . -157) (undo-tree-id32 . -102) (t 25174 31186 761528 694000)) nil (25174 34992 781009 236000) 0 nil])
+([nil nil ((#(">>>>>>> professeur list" 0 23 (fontified t)) . 1473) (undo-tree-id23 . -23) (undo-tree-id24 . -23) (undo-tree-id25 . -23) (undo-tree-id26 . -23) (undo-tree-id27 . -23) 1496 (t 25174 34954 973784 701000)) nil (25174 34992 780996 290000) 0 nil])
+([nil nil ((#("
+" 0 1 (fontified t)) . -1472) (undo-tree-id15 . -1) (undo-tree-id16 . -1) (undo-tree-id17 . -1) (undo-tree-id18 . -1) (undo-tree-id19 . -1) (undo-tree-id20 . -1) (undo-tree-id21 . -1) (undo-tree-id22 . -1) 1473) nil (25174 34992 780984 378000) 0 nil])
+([nil nil ((#("<<<<<<< HEAD
+        return System.out.format(\"Le professeur %d a mis la gommette %d à l'élève %d, le %s pour motif : '%s'.\", idProf, idGommette, idStudent, date, behavior);
+    }
+=======" 0 21 (fontified nil) 21 27 (fontified nil face font-lock-keyword-face) 27 46 (fontified nil) 46 88 (fontified nil face font-lock-string-face) 88 89 (fontified nil face font-lock-string-face) 89 118 (fontified nil face font-lock-string-face) 118 119 (fontified nil face font-lock-string-face) 119 121 (fontified nil face font-lock-string-face) 121 122 (fontified nil face font-lock-string-face) 122 124 (fontified nil face font-lock-string-face) 124 187 (fontified nil)) . 1118) (undo-tree-id39 . -187)) ((1118 . 1305)) (25174 35133 350248 186000) 0 nil])
+([nil current ((#("
+" 0 1 (fontified nil)) . 1117) (undo-tree-id43 . -1) (undo-tree-id44 . -1) (undo-tree-id45 . -1)) ((1117 . 1118) (t 25174 34992 796130 916000)) (25174 35134 550558 354000) 0 nil])
 nil

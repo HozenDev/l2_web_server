@@ -4,7 +4,7 @@
 
 <ul>
     <#list eleves as eleve>
-        <li>${eleve.id} - ${eleve.lastName} ${eleve.firstName} </li>
+        <li>${eleve.id} - ${eleve.lastName} ${eleve.firstName} : ${eleve.strListGommette()}</li>
     </#list>
 </ul>
 

@@ -33,6 +33,16 @@ nil
 ([nil nil ((234 . 247)) nil (25174 34681 415504 773000) 0 nil])
 ([nil nil (("p" . -240) (undo-tree-id346 . -1) ("r" . -241) (undo-tree-id347 . -1) ("o" . -242) (undo-tree-id348 . -1) ("f" . -243) (undo-tree-id349 . -1) ("e" . -244) (undo-tree-id350 . -1) ("s" . -245) (undo-tree-id351 . -1) ("s" . -246) (undo-tree-id352 . -1) 247) nil (25174 34681 415499 848000) 0 nil])
 ([nil nil (("	<#list " . 232) (undo-tree-id340 . -8) (undo-tree-id341 . -8) (undo-tree-id342 . -8) (undo-tree-id343 . -8) (undo-tree-id344 . -8) (undo-tree-id345 . -8)) nil (25174 34681 415485 0) 0 nil])
-([nil current (("
+([nil nil (("
 " . -231) (undo-tree-id330 . -1) (undo-tree-id331 . 1) (undo-tree-id332 . -1) (undo-tree-id333 . -1) (undo-tree-id334 . -1) (undo-tree-id335 . -1) (undo-tree-id336 . -1) (undo-tree-id337 . -1) (undo-tree-id338 . -1) (undo-tree-id339 . -1) 232) nil (25174 34681 415468 361000) 0 nil])
+([nil nil ((190 . 219) ("
+    ${professeur.strListGommette()" . -190) (undo-tree-id357 . -35) (t 25174 34681 415057 593000)) nil (25174 35364 338723 385000) 0 nil])
+([nil nil ((219 . 221) (t 25174 34954 969710 891000)) nil (25174 35364 338697 522000) 0 nil])
+([nil nil ((113 . 396) ("        <li>${professeur.id} - ${professeur.firstName} ${professeur.lastName} ${professeur.strListGommette()}</li>" . 113) (undo-tree-id358 . -77) (undo-tree-id359 . -114) (undo-tree-id360 . -114) (t 25174 35364 336453 610000)) nil (25174 36503 453912 574000) 0 nil])
+([nil current ((113 . 231) ("<<<<<<< HEAD
+        <li>${professeur.id} - ${professeur.firstName} ${professeur.lastName} ${professeur.strListGommette()}</li>
+=======
+        <li>${professeur.id} - ${professeur.firstName} ${professeur.lastName}
+    ${professeur.strListGommette()}</li>
+>>>>>>> jointure bien vénère" . 113) (t 25174 35612 81941 103000)) nil (25174 36503 453882 4000) 0 nil])
 nil

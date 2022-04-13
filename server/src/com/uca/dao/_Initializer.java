@@ -41,7 +41,7 @@ public class _Initializer {
 	    // Personal tables
             statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS professeurs (id int primary key auto_increment, firstname varchar(100), lastname varchar(100), listGommettes varchar(100)); ");
 	    statement.executeUpdate();
-	    statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS eleves (id int primary key auto_increment, firstname varchar(100), lastname varchar(100)); ");
+	    statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS eleves (id int primary key auto_increment, firstname varchar(100), lastname varchar(100), listGommettes varchar(100)); ");
 	    statement.executeUpdate();
 	    statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS gommettes (id int primary key auto_increment, color varchar(100), description varchar(100)); ");
 	    statement.executeUpdate();
@@ -55,9 +55,10 @@ public class _Initializer {
             statement.setString(2, "Muillerez");
             statement.executeUpdate();
 
-            statement = connection.prepareStatement("INSERT INTO eleves(firstname, lastname) VALUES(?, ?);");
+            statement = connection.prepareStatement("INSERT INTO eleves(firstname, lastname, listGommettes) VALUES(?, ?, ?);");
             statement.setString(1, "Enzo");
             statement.setString(2, "Durel");
+	    statement.setString(3, "1");
             statement.executeUpdate();
 
 	    statement = connection.prepareStatement("INSERT INTO gommettes(color, description) VALUES(?, ?);");
