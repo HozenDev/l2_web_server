@@ -1,5 +1,6 @@
 package com.uca.entity;
 
+import com.uca.dao._Connector;
 import java.util.ArrayList;
 import java.sql.*;
 
@@ -63,20 +64,38 @@ public class ProfesseurEntity {
     }
 
     public void setGommette(String src) {
+	Connection connect = _Connector.getInstance();
+	PreparedStatement statement;
+	
 	String[] srcSplit = src.split(";");
+	
 	for (String s: srcSplit) {
-            PreparedStatement preparedStatement =
-		this.connect.prepareStatement("SELECT * FROM gommettesAttribuees INNER JOIN professeurs ON gommettesAttribuees.id == ?;");
-	    prepareStatement.setInt(1, Integer.parseInt(s));
-            ResultSet resultSet = preparedStatement.executeQuery();
-	    GommetteAttribueeEntity entity = new GommetteAttribueeEntity();
-	    entity.setId(resultSet.getInt("id"));
-	    entity.setIdStudent(resultSet.getInt("id_student"));
-	    entity.setIdProf(resultSet.getInt("id_prof"));
-	    entity.setIdGommette(resultSet.getInt("id_gommette"));
-	    entity.setDate(resultSet.getString("date"));
-	    entity.setBehavior(resultSet.getString("behavior"));
-	    this.listGommettes.add(entity);
+	    try {
+
+		// Requête SQL
+		
+		statement =
+		    connect.prepareStatement("SELECT * FROM gommettesAttribuees INNER JOIN professeurs ON gommettesAttribuees.id = ?;");
+		statement.setInt(1, Integer.parseInt(s));
+		ResultSet resultSet = statement.executeQuery();
+		resultSet.next();
+
+		// Create GommetteAttribueeEntity
+		
+		GommetteAttribueeEntity entity = new GommetteAttribueeEntity();
+		entity.setId(resultSet.getInt("id"));
+		entity.setIdStudent(resultSet.getInt("id_student"));
+		entity.setIdProf(resultSet.getInt("id_prof"));
+		entity.setIdGommette(resultSet.getInt("id_gommette"));
+		entity.setDate(resultSet.getString("date"));
+		entity.setBehavior(resultSet.getString("behavior"));
+
+		this.listGommettes.add(entity);
+	    }
+	    catch (Exception e) {
+		System.out.println(e.toString());
+		throw new RuntimeException("could not recup data professor");
+	    }
 	}
     }
 
@@ -84,9 +103,10 @@ public class ProfesseurEntity {
 
     public String strListGommette() {
 	StringBuilder s = new StringBuilder();
+	s.append("<br>");
 	for (GommetteAttribueeEntity g: this.listGommettes) {
 	    s.append(g.toString());
-	    s.append(";");
+	    s.append("<br>");
 	}
 	return s.toString();
     }

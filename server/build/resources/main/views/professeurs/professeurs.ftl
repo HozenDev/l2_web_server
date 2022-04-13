@@ -4,7 +4,8 @@
 
 <ul>
     <#list professeurs as professeur>
-        <li>${professeur.id} - ${professeur.firstName} ${professeur.lastName}</li>
+        <li>${professeur.id} - ${professeur.firstName} ${professeur.lastName}
+    ${professeur.strListGommette()}</li>
     </#list>
 </ul>
 

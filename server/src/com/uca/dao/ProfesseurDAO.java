@@ -18,7 +18,7 @@ public class ProfesseurDAO extends _Generic<ProfesseurEntity> {
                 entity.setFirstName(resultSet.getString("firstname"));
                 entity.setLastName(resultSet.getString("lastname"));
 		
-		entity.setGommette(resultSet.getString("listGommettes"))
+		entity.setGommette(resultSet.getString("listGommettes"));
 		
                 entities.add(entity);
             }
