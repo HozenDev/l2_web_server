@@ -2,12 +2,37 @@ package com.uca.entity;
 
 public class GommetteEntity {
 
-    private final String description;
+    private String description;
     private String color;
     private int id;
     
-    public GommetteEntity(String color, String description) {
+    public GommetteEntity() {}
+
+    // Setters //
+
+    public void setId(int id) {
+	this.id = id;
+    }
+
+    public void setColor(String color) {
 	this.color = color;
+    }
+
+    public void setDescription(String description) {
 	this.description = description;
+    }
+
+    // Getters //
+
+    public int getId() {
+	return this.id;
+    }
+
+    public String getColor() {
+	return this.color;
+    }
+
+    public String getDescription() {
+	return this.description;
     }
 }

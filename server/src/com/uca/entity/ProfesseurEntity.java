@@ -5,15 +5,13 @@ import java.util.ArrayList;
 public class ProfesseurEntity {
 
     private int id;
-    private String lastname;
-    private String firstname;
+    private String lastName;
+    private String firstName;
     private String classe;
     private ArrayList<GommetteAttribueeEntity> listGommettes;
 
-    public ProfesseurEntity(String lastname, String firstname, int id) {
-	this.lastname = lastname;
-	this.firstname = firstname;
-	this.id = id;
+    public ProfesseurEntity() {
+	this.listGommettes = new ArrayList<>();
     }
 
     // Getters //
@@ -23,11 +21,11 @@ public class ProfesseurEntity {
     }
 
     public String getLastName() {
-	return this.lastname;
+	return this.lastName;
     }
 
     public String getFirstName() {
-	return this.firstname;
+	return this.firstName;
     }
 
     public String getClasse() {
@@ -51,12 +49,12 @@ public class ProfesseurEntity {
 	this.id = id;
     }
 
-    public void setLastName(String lastname) {
-	this.lastname = lastname;
+    public void setLastName(String lastName) {
+	this.lastName = lastName;
     }
 
-    public void setFirstName(String firstname) {
-	this.firstname = firstname;
+    public void setFirstName(String firstName) {
+	this.firstName = firstName;
     }
 
     public void setClasse(String classe) {

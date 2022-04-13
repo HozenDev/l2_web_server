@@ -3,8 +3,8 @@
 <body xmlns="http://www.w3.org/1999/html">
 
 <ul>
-    <#list eleves as eleve>
-        <li>${eleve.id} - ${eleve.lastName} ${eleve.firstName} </li>
+    <#list gommettes as gommette>
+        <li>${gommette.id} - ${gommette.color} ${gommette.description}</li>
     </#list>
 </ul>
 

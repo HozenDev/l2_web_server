@@ -10,13 +10,13 @@ public class GommetteDAO extends _Generic<GommetteEntity> {
     public ArrayList<GommetteEntity> getAllUsers() {
         ArrayList<GommetteEntity> entities = new ArrayList<>();
         try {
-            PreparedStatement preparedStatement = this.connect.prepareStatement("SELECT * FROM users ORDER BY id ASC;");
+            PreparedStatement preparedStatement = this.connect.prepareStatement("SELECT * FROM gommettes ORDER BY id ASC;");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 GommetteEntity entity = new GommetteEntity();
                 entity.setId(resultSet.getInt("id"));
-                entity.setFirstName(resultSet.getString("firstname"));
-                entity.setLastName(resultSet.getString("lastname"));
+                entity.setColor(resultSet.getString("color"));
+                entity.setDescription(resultSet.getString("description"));
 
                 entities.add(entity);
             }

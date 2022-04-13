@@ -18,10 +18,10 @@ public class EleveGUI {
 
         Map<String, Object> input = new HashMap<>();
 
-        input.put("users", EleveCore.getAllUsers());
+        input.put("eleves", EleveCore.getAllUsers());
 
         Writer output = new StringWriter();
-        Template template = configuration.getTemplate("users/users.ftl");
+        Template template = configuration.getTemplate("eleves/eleves.ftl");
         template.setOutputEncoding("UTF-8");
         template.process(input, output);
 

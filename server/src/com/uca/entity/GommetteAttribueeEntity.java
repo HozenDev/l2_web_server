@@ -1,13 +1,11 @@
 package com.uca.entity;
 
-import java.util.Date;
-
 public class GommetteAttribueeEntity {
     private int id;
     private int idStudent;
     private int idGommette;
     private int idProf;
-    private Date date;
+    private String date;
     private String behavior;
 
     public GommetteAttribueeEntity() {
@@ -32,7 +30,7 @@ public class GommetteAttribueeEntity {
 	return this.idGommette;
     }
 
-    public Date getDate() {
+    public String getDate() {
 	return this.date;
     }
 
@@ -58,7 +56,7 @@ public class GommetteAttribueeEntity {
 	this.idGommette = id;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
 	this.date = date;
     }
 

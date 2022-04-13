@@ -1,0 +1,16 @@
+(undo-tree-save-format-version . 1)
+"50d3bdddaa45b40b9b39c08b6d66e3df6c7ef552"
+[nil nil nil nil (25173 58237 31049 709000) 0 nil]
+([nil nil ((#("e" 0 1 (fontified t clang-format+-chg delete c-type c-decl-id-start face font-lock-type-face)) . 200) (#("t" 0 1 (fontified t clang-format+-chg delete face font-lock-type-face)) . 200) (#("a" 0 1 (fontified t clang-format+-chg delete face font-lock-type-face)) . 200) (#("D" 0 1 (fontified t face font-lock-type-face)) . 200) (t 25173 28294 410647 961000)) nil (25173 58237 31046 112000) 0 nil])
+([nil nil ((200 . 203)) nil (25173 58237 31042 145000) 0 nil])
+([nil nil ((203 . 206)) nil (25173 58237 31035 973000) 0 nil])
+([nil nil ((#("
+import java.util.Date;" 0 1 (fontified t) 1 7 (fontified t face font-lock-keyword-face) 7 8 (fontified t) 8 12 (fontified t face font-lock-constant-face) 12 13 (fontified t) 13 17 (fontified t face font-lock-constant-face) 17 18 (fontified t) 18 21 (fontified t face font-lock-type-face) 21 22 (fontified t c-type c-decl-id-start face font-lock-type-face) 22 23 (fontified t)) . 25) (undo-tree-id9 . -23) (undo-tree-id10 . -23) (undo-tree-id11 . -23) (undo-tree-id12 . -23) (undo-tree-id13 . -23) (undo-tree-id14 . -23) 26 (t 25173 58237 28470 756000)) nil (25173 58240 816689 142000) 0 nil])
+([nil nil ((#("
+" 0 1 (fontified t)) . -24) (undo-tree-id0 . -1) (undo-tree-id1 . -1) (undo-tree-id2 . -1) (undo-tree-id3 . -1) (undo-tree-id4 . -1) (undo-tree-id5 . -1) (undo-tree-id6 . -1) (undo-tree-id7 . -1) (undo-tree-id8 . -1) 25) nil (25173 58240 816665 408000) 0 nil])
+([nil nil ((#("D" 0 1 (fontified t c-type c-decl-id-start face font-lock-type-face)) . -545) (undo-tree-id15 . -1) (undo-tree-id16 . -1) (undo-tree-id17 . -1) (undo-tree-id18 . -1) (#("a" 0 1 (fontified t c-type c-decl-id-start face font-lock-type-face)) . -546) (undo-tree-id19 . -1) (undo-tree-id20 . -1) (undo-tree-id21 . -1) (#("t" 0 1 (fontified t c-type c-decl-id-start face font-lock-type-face)) . -547) (undo-tree-id22 . -1) (undo-tree-id23 . -1) (#("e" 0 1 (fontified t c-type c-decl-id-start face font-lock-type-face)) . -548) (undo-tree-id24 . -1) 549 (t 25173 58240 848526 371000)) nil (25173 58258 187971 534000) 0 nil])
+([nil nil ((545 . 551)) nil (25173 58258 187943 240000) 0 nil])
+([nil nil ((#("e" 0 1 (fontified t clang-format+-chg delete face font-lock-type-face)) . 951) (#("t" 0 1 (fontified t clang-format+-chg delete face font-lock-type-face)) . 951) (#("a" 0 1 (fontified t clang-format+-chg delete face font-lock-type-face)) . 951) (#("D" 0 1 (fontified t face font-lock-type-face)) . 951)) nil (25173 58258 187940 525000) 0 nil])
+([nil nil ((951 . 953)) nil (25173 58258 187938 151000) 0 nil])
+([nil current ((953 . 957)) nil (25173 58258 187932 210000) 0 nil])
+nil

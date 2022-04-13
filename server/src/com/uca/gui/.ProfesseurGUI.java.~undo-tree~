@@ -1,0 +1,12 @@
+(undo-tree-save-format-version . 1)
+"d8edc605f24e4ddcef0457ab3539de6a2d09e6d9"
+[nil nil nil nil (25173 59434 537345 137000) 0 nil]
+([nil nil ((#("r" 0 1 (fontified t clang-format+-chg delete face font-lock-string-face)) . 572) (#("e" 0 1 (fontified t clang-format+-chg delete face font-lock-string-face)) . 572) (#("s" 0 1 (fontified t clang-format+-chg delete face font-lock-string-face)) . 572) (#("u" 0 1 (fontified t face font-lock-string-face)) . 572) (t 25165 16252 903318 588000)) nil (25173 59434 537341 390000) 0 nil])
+([nil nil ((572 . 582)) nil (25173 59434 537338 315000) 0 nil])
+([nil nil ((#("r" 0 1 (fontified t clang-format+-chg delete face font-lock-string-face)) . 717) (#("e" 0 1 (fontified t clang-format+-chg delete face font-lock-string-face)) . 717) (#("s" 0 1 (fontified t clang-format+-chg delete face font-lock-string-face)) . 717) (#("u" 0 1 (fontified t face font-lock-string-face)) . 717)) nil (25173 59434 537335 750000) 0 nil])
+([nil nil ((717 . 727)) nil (25173 59434 537332 845000) 0 nil])
+([nil nil ((#("r" 0 1 (fontified t clang-format+-chg delete face font-lock-string-face)) . 729) (#("e" 0 1 (fontified t clang-format+-chg delete face font-lock-string-face)) . 729) (#("s" 0 1 (fontified t clang-format+-chg delete face font-lock-string-face)) . 729) (#("u" 0 1 (fontified t face font-lock-string-face)) . 729)) nil (25173 59434 537329 408000) 0 nil])
+([nil nil ((729 . 736)) nil (25173 59434 537326 202000) 0 nil])
+([nil nil ((#("e" 0 1 (fontified t clang-format+-chg chg face font-lock-string-face)) . -735) (undo-tree-id0 . -1) 736) nil (25173 59434 537323 137000) 0 nil])
+([nil current ((735 . 739)) nil (25173 59434 537288 272000) 0 nil])
+nil

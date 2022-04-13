@@ -6,13 +6,10 @@ public class EleveEntity {
 
     private ArrayList<GommetteAttribueeEntity> listGommettes;
     private int id;
-    private String lastname;
-    private String firstname;
+    private String lastName;
+    private String firstName;
     
-    public EleveEntity(String lastname, String firstname, int id) {
-	this.lastname = lastname;
-	this.firstname = firstname;
-	this.id = id;
+    public EleveEntity() {
 	this.listGommettes = new ArrayList<>();
     }
 
@@ -27,11 +24,11 @@ public class EleveEntity {
     }
 
     public String getLastName() {
-	return this.lastname;
+	return this.lastName;
     }
 
     public String getFirstName() {
-	return this.firstname;
+	return this.firstName;
     }
 
     // Setters //
@@ -40,12 +37,12 @@ public class EleveEntity {
 	this.listGommettes.add(src);
     }
 
-    public void setLastName(String lastname) {
-	this.lastname = lastname;
+    public void setLastName(String lastName) {
+	this.lastName = lastName;
     }
 
-    public void setFirstName(String firstname) {
-	this.firstname = firstname;
+    public void setFirstName(String firstName) {
+	this.firstName = firstName;
     }
 
     public void setId(int id) {

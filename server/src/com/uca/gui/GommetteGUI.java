@@ -18,10 +18,10 @@ public class GommetteGUI {
 
         Map<String, Object> input = new HashMap<>();
 
-        input.put("users", GommetteCore.getAllUsers());
+        input.put("gommettes", GommetteCore.getAllUsers());
 
         Writer output = new StringWriter();
-        Template template = configuration.getTemplate("users/users.ftl");
+        Template template = configuration.getTemplate("gommettes/gommettes.ftl");
         template.setOutputEncoding("UTF-8");
         template.process(input, output);
 

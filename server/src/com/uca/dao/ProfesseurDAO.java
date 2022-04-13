@@ -10,7 +10,7 @@ public class ProfesseurDAO extends _Generic<ProfesseurEntity> {
     public ArrayList<ProfesseurEntity> getAllUsers() {
         ArrayList<ProfesseurEntity> entities = new ArrayList<>();
         try {
-            PreparedStatement preparedStatement = this.connect.prepareStatement("SELECT * FROM users ORDER BY id ASC;");
+            PreparedStatement preparedStatement = this.connect.prepareStatement("SELECT * FROM professeurs ORDER BY id ASC;");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 ProfesseurEntity entity = new ProfesseurEntity();

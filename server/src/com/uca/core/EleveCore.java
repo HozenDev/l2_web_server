@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class EleveCore {
 
     public static ArrayList<EleveEntity> getAllUsers() {
-        return new EleveDOA().getAllUsers();
+        return new EleveDAO().getAllUsers();
     }
 
 }

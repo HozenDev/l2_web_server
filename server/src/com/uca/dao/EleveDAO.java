@@ -5,12 +5,12 @@ import com.uca.entity.EleveEntity;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class GommetteAttribueeDAO extends _Generic<EleveEntity> {
+public class EleveDAO extends _Generic<EleveEntity> {
 
     public ArrayList<EleveEntity> getAllUsers() {
         ArrayList<EleveEntity> entities = new ArrayList<>();
         try {
-            PreparedStatement preparedStatement = this.connect.prepareStatement("SELECT * FROM users ORDER BY id ASC;");
+            PreparedStatement preparedStatement = this.connect.prepareStatement("SELECT * FROM eleves ORDER BY id ASC;");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 EleveEntity entity = new EleveEntity();
