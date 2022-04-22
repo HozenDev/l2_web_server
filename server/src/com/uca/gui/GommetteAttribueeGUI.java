@@ -1,5 +1,6 @@
 package com.uca.gui;
 
+import com.uca.entity.GommetteAttribueeEntity;
 import com.uca.core.GommetteAttribueeCore;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -26,5 +27,19 @@ public class GommetteAttribueeGUI {
         template.process(input, output);
 
         return output.toString();
+    }
+
+    public static String create(GommetteAttribueeEntity obj) throws IOException, TemplateException {
+        return String.format("<p> %s a été créé. </p>", GommetteAttribueeCore.create(obj).toString());
+    }
+
+    public static String delete(GommetteAttribueeEntity obj) throws IOException, TemplateException {
+	try {
+	    GommetteAttribueeCore.delete(obj);
+	}
+	catch (Exception e) {
+	    throw new RuntimeException("impossible de supprimer l'élève.");
+	}
+        return "<p> La gommette n'est plus attribuée. </p>";
     }
 }

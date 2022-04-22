@@ -1,5 +1,8 @@
 package com.uca.entity;
 
+import com.uca.dao._Connector;
+import java.sql.*;
+
 public class GommetteAttribueeEntity {
     private int id;
     private int idStudent;
@@ -64,8 +67,73 @@ public class GommetteAttribueeEntity {
 	this.behavior = behavior;
     }
 
+    public static boolean isValidTuple(int id, String table_name) {
+	boolean isvalid = false;
+
+	Connection connect = _Connector.getInstance();
+	PreparedStatement statement;
+	ResultSet resultSet;
+
+	try {
+	    statement =
+		connect.prepareStatement("SELECT * FROM "+ table_name +" WHERE id = ?;");
+	    statement.setInt(1, id);
+	    resultSet = statement.executeQuery();
+	    if (resultSet.next()) isvalid = true;
+	}
+	catch (Exception e) {
+	    System.out.println(e.toString());
+	    throw new RuntimeException("SQL Error: Invalide ID Student");
+	}
+	
+	return isvalid;
+    }    
+    
     @Override
     public String toString() {
-        return String.format("Le professeur %d a mis la gommette %d à l'élève %d, le %s pour motif : '%s'.", idProf, idGommette, idStudent, date, behavior);
+
+	Connection connect = _Connector.getInstance();
+	PreparedStatement statement;
+	ResultSet resultSet;
+	
+	String prof_lastname = "";
+	String prof_firstname = "";
+	String eleve_lastname = "";
+	String eleve_firstname = "";
+	String gommette_color = "";
+
+	try {
+	    statement =
+		connect.prepareStatement("SELECT lastname, firstname FROM professeurs WHERE id = ?;");
+	    statement.setInt(1, this.idProf);
+	    resultSet = statement.executeQuery();
+	    resultSet.next();
+	    
+	    prof_lastname = resultSet.getString("lastname");
+	    prof_firstname = resultSet.getString("firstname");	    
+
+	    statement =
+		connect.prepareStatement("SELECT lastname, firstname FROM eleves WHERE id = ?;");
+	    statement.setInt(1, this.idStudent);
+	    resultSet = statement.executeQuery();
+	    resultSet.next();
+	    
+	    eleve_lastname = resultSet.getString("lastname");
+	    eleve_firstname = resultSet.getString("firstname");
+
+	    statement =
+		connect.prepareStatement("SELECT color FROM gommettes WHERE id = ?;");
+	    statement.setInt(1, this.idGommette);
+	    resultSet = statement.executeQuery();
+	    resultSet.next();
+	    
+	    gommette_color = resultSet.getString("color");
+	}
+	catch (Exception e) {
+	    System.out.println(e.toString());
+	    throw new RuntimeException("SQL Error: could not recup gommettesAttribuees datas");
+	}
+	    
+	return String.format("Le professeur %s %s a mis la gommette %s à l'élève %s %s, le %s pour motif : '%s'.", prof_lastname, prof_firstname, gommette_color, eleve_lastname, eleve_firstname, date, behavior);
     }    
 }

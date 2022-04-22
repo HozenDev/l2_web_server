@@ -18,7 +18,7 @@ public class EleveDAO extends _Generic<EleveEntity> {
                 entity.setFirstName(resultSet.getString("firstname"));
                 entity.setLastName(resultSet.getString("lastname"));
 
-		entity.setGommette(resultSet.getString("listGommettes"));
+		entity.initGommette();
 		
                 entities.add(entity);
             }
@@ -31,12 +31,54 @@ public class EleveDAO extends _Generic<EleveEntity> {
 
     @Override
     public EleveEntity create(EleveEntity obj) {
-        //TODO !
-        return null;
+	PreparedStatement statement;
+	try {
+	    statement =
+		this.connect.prepareStatement("INSERT INTO eleves (lastname, firstname) VALUES(?, ?);");
+	    statement.setString(1, obj.getLastName());
+	    statement.setString(2, obj.getFirstName());
+	    statement.executeUpdate();
+	}
+	catch (SQLException e) {
+	    e.printStackTrace();
+	}
+        return obj;
     }
 
     @Override
     public void delete(EleveEntity obj) {
-        //TODO !
+	PreparedStatement statement;
+	try {
+	    statement =
+		this.connect.prepareStatement("DELETE FROM eleves WHERE id = ?");
+	    statement.setInt(1, obj.getId());
+	    statement.executeUpdate();
+	}
+	catch (SQLException e) {
+	    e.printStackTrace();
+	}
+    }
+
+    public ArrayList<EleveEntity> getUserById(int id) {
+	PreparedStatement statement;
+	ArrayList<EleveEntity> entities = new ArrayList<>();
+	try {
+	    statement =
+		this.connect.prepareStatement("SELECT * FROM eleves WHERE id = ?;");
+	    statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+	    if (resultSet.next()) {
+                EleveEntity entity = new EleveEntity();
+                entity.setId(resultSet.getInt("id"));
+                entity.setFirstName(resultSet.getString("firstname"));
+                entity.setLastName(resultSet.getString("lastname"));
+		entity.initGommette();
+		entities.add(entity);
+	    }
+	}
+	catch (SQLException e) {
+	    e.printStackTrace();
+	}
+        return entities;
     }
 }

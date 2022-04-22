@@ -4,7 +4,20 @@
 
 <ul>
     <#list users as user>
-        <li>${user.id} - ${user.firstName} ${user.lastName}</li>
+        <li>
+	    <p> ${user.getId()} - ${user.getFirstName()} ${user.getLastName()} </p>
+	    	<ul>
+		   <li>
+			<p> Username : ${user.getUsername()} </p>
+		   </li>
+		   <li>
+			<p> Password : ${user.getPassword()} </p>
+		   </li>
+		   <li>
+			<p> Statut : ${user.getStatut()} </p>
+		   </li>
+		</ul>
+	</li>
     </#list>
 </ul>
 

@@ -4,8 +4,12 @@
 
 <ul>
     <#list professeurs as professeur>
-        <li>${professeur.id} - ${professeur.firstName} ${professeur.lastName}
-    ${professeur.strListGommette()}</li>
+        <li> ID:${professeur.getId()} | ${professeur.getFirstName()} ${professeur.getLastName()}</li>
+	<ul>
+	    <#list professeur.getAllGommettes() as p_lg>
+		<li> ${p_lg} </li>
+	    </#list>
+	</ul>
     </#list>
 </ul>
 

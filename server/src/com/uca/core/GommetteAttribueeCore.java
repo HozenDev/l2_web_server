@@ -11,4 +11,12 @@ public class GommetteAttribueeCore {
         return new GommetteAttribueeDAO().getAllUsers();
     }
 
+    public static GommetteAttribueeEntity create(GommetteAttribueeEntity obj) {
+	return new GommetteAttribueeDAO().create(obj);
+    }
+
+    public static void delete(GommetteAttribueeEntity obj) {
+	new GommetteAttribueeDAO().delete(obj);
+    }
+
 }

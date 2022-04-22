@@ -11,4 +11,12 @@ public class ProfesseurCore {
         return new ProfesseurDAO().getAllUsers();
     }
 
+    public static ProfesseurEntity create(ProfesseurEntity obj) {
+	return new ProfesseurDAO().create(obj);
+    }
+
+    public static void delete(ProfesseurEntity obj) {
+	new ProfesseurDAO().delete(obj);
+    }    
+
 }

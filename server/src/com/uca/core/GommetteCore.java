@@ -11,4 +11,12 @@ public class GommetteCore {
         return new GommetteDAO().getAllUsers();
     }
 
+    public static GommetteEntity create(GommetteEntity obj) {
+	return new GommetteDAO().create(obj);
+    }
+
+    public static void delete(GommetteEntity obj) {
+	new GommetteDAO().delete(obj);
+    }    
+
 }

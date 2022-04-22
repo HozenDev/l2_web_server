@@ -34,15 +34,8 @@ public class ProfesseurEntity {
 	return this.classe;
     }
 
-    public GommetteAttribueeEntity getGommette(int index) {
-	GommetteAttribueeEntity gA = new GommetteAttribueeEntity();
-	try {
-	    gA = this.listGommettes.get(index);
-	}
-	catch (Exception e) {
-	    System.out.println("Index invalide");
-	}
-	return gA;
+    public ArrayList<GommetteAttribueeEntity> getAllGommettes() {
+	return this.listGommettes;
     }
 
     // Setters //
@@ -63,25 +56,17 @@ public class ProfesseurEntity {
 	this.classe = classe;
     }
 
-    public void setGommette(String src) {
+    public void initGommette() {
 	Connection connect = _Connector.getInstance();
 	PreparedStatement statement;
-	
-	String[] srcSplit = src.split(";");
-	
-	for (String s: srcSplit) {
-	    try {
 
-		// Requête SQL
-		
-		statement =
-		    connect.prepareStatement("SELECT * FROM gommettesAttribuees INNER JOIN professeurs ON gommettesAttribuees.id = ?;");
-		statement.setInt(1, Integer.parseInt(s));
-		ResultSet resultSet = statement.executeQuery();
-		resultSet.next();
+	try {
+	    statement =
+		connect.prepareStatement("SELECT * FROM gommettesAttribuees WHERE id_prof = ?;");
+	    statement.setInt(1, this.id);
+	    ResultSet resultSet = statement.executeQuery();
 
-		// Create GommetteAttribueeEntity
-		
+	    while (resultSet.next()) {
 		GommetteAttribueeEntity entity = new GommetteAttribueeEntity();
 		entity.setId(resultSet.getInt("id"));
 		entity.setIdStudent(resultSet.getInt("id_student"));
@@ -90,24 +75,17 @@ public class ProfesseurEntity {
 		entity.setDate(resultSet.getString("date"));
 		entity.setBehavior(resultSet.getString("behavior"));
 
-		this.listGommettes.add(entity);
+		this.listGommettes.add(entity);		
 	    }
-	    catch (Exception e) {
-		System.out.println(e.toString());
-		throw new RuntimeException("could not recup data professor");
-	    }
+	}
+	catch (Exception e) {
+	    System.out.println(e.toString());
+	    throw new RuntimeException("could not recup data professor");
 	}
     }
 
-    // list String
-
-    public String strListGommette() {
-	StringBuilder s = new StringBuilder();
-	s.append("<br>");
-	for (GommetteAttribueeEntity g: this.listGommettes) {
-	    s.append(g.toString());
-	    s.append("<br>");
-	}
-	return s.toString();
+    @Override
+    public String toString() {
+	return String.format("%s %s", this.lastName, this.firstName);
     }
 }

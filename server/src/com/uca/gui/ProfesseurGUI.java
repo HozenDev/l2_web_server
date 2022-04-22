@@ -1,5 +1,6 @@
 package com.uca.gui;
 
+import com.uca.entity.ProfesseurEntity;
 import com.uca.core.ProfesseurCore;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -26,5 +27,19 @@ public class ProfesseurGUI {
         template.process(input, output);
 
         return output.toString();
+    }
+
+    public static String create(ProfesseurEntity obj) throws IOException, TemplateException {
+        return String.format("<p> %s a été créé. </p>", ProfesseurCore.create(obj).toString());
+    }
+
+    public static String delete(ProfesseurEntity obj) throws IOException, TemplateException {
+	try {
+	    ProfesseurCore.delete(obj);
+	}
+	catch (Exception e) {
+	    throw new RuntimeException("impossible de supprimer l'élève.");
+	}
+        return "<p> Le professeur a été supprimé. </p>";
     }
 }

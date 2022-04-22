@@ -35,4 +35,9 @@ public class GommetteEntity {
     public String getDescription() {
 	return this.description;
     }
+
+    @Override
+    public String toString() {
+	return String.format("%s : %s", this.color, this.description);
+    }
 }

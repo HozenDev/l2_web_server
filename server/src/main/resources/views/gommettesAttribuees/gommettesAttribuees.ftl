@@ -4,7 +4,7 @@
 
 <ul>
     <#list gommettesAttribuees as gommetteAttribuee>
-        <li>${gommetteAttribuee.id} - ${gommetteAttribuee.idStudent} ${gommetteAttribuee.idGommette}  ${gommetteAttribuee.date} ${gommetteAttribuee.behavior} </li>
+        <li>${gommetteAttribuee.toString()}</li>
     </#list>
 </ul>
 

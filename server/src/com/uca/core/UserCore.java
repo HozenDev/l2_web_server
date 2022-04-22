@@ -11,4 +11,15 @@ public class UserCore {
         return new UserDAO().getAllUsers();
     }
 
+    public static ArrayList<UserEntity> getUserById(int id) {
+        return new UserDAO().getUserById(id);
+    }
+
+    public static UserEntity create(UserEntity obj) {
+	return new UserDAO().create(obj);
+    }
+
+    public static void delete(UserEntity obj) {
+	new UserDAO().delete(obj);
+    }
 }

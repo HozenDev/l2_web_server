@@ -16,9 +16,9 @@ public class EleveEntity {
     }
 
     // Getters //
-    
-    public GommetteAttribueeEntity getGommette(int index) {
-	return this.listGommettes.get(index);
+
+    public ArrayList<GommetteAttribueeEntity> getAllGommettes() {
+	return this.listGommettes;
     }
 
     public int getId() {
@@ -35,25 +35,17 @@ public class EleveEntity {
 
     // Setters //
 
-    public void setGommette(String src) {
+    public void initGommette() {
 	Connection connect = _Connector.getInstance();
 	PreparedStatement statement;
 	
-	String[] srcSplit = src.split(";");
-	
-	for (String s: srcSplit) {
-	    try {
+	try {
+	    statement =
+		connect.prepareStatement("SELECT * FROM gommettesAttribuees WHERE id_student = ?;");
+	    statement.setInt(1, this.id);   
+	    ResultSet resultSet = statement.executeQuery();	
 
-		// Requête SQL
-		
-		statement =
-		    connect.prepareStatement("SELECT * FROM gommettesAttribuees INNER JOIN eleves ON gommettesAttribuees.id = ?;");
-		statement.setInt(1, Integer.parseInt(s));
-		ResultSet resultSet = statement.executeQuery();
-		resultSet.next();
-
-		// Create GommetteAttribueeEntity
-		
+	    while (resultSet.next()) {
 		GommetteAttribueeEntity entity = new GommetteAttribueeEntity();
 		entity.setId(resultSet.getInt("id"));
 		entity.setIdStudent(resultSet.getInt("id_student"));
@@ -64,23 +56,11 @@ public class EleveEntity {
 
 		this.listGommettes.add(entity);
 	    }
-	    catch (Exception e) {
-		System.out.println(e.toString());
-		throw new RuntimeException("could not recup data professor");
-	    }
 	}
-    }
-
-    // list String
-
-    public String strListGommette() {
-	StringBuilder s = new StringBuilder();
-	s.append("<br>");
-	for (GommetteAttribueeEntity g: this.listGommettes) {
-	    s.append(g.toString());
-	    s.append("<br>");
+	catch (Exception e) {
+	    System.out.println(e.toString());
+	    throw new RuntimeException("could not recup data student");
 	}
-	return s.toString();
     }    
 
     public void setLastName(String lastName) {
@@ -93,5 +73,10 @@ public class EleveEntity {
 
     public void setId(int id) {
 	this.id = id;
+    }
+
+    @Override
+    public String toString() {
+	return String.format("%s %s", this.lastName, this.firstName);
     }
 }

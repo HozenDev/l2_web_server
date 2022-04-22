@@ -29,12 +29,31 @@ public class GommetteDAO extends _Generic<GommetteEntity> {
 
     @Override
     public GommetteEntity create(GommetteEntity obj) {
-        //TODO !
-        return null;
+	PreparedStatement statement;
+	try {
+	    statement =
+		this.connect.prepareStatement("INSERT INTO gommettes (color, description) VALUES(?, ?);");
+	    statement.setString(1, obj.getColor());
+	    statement.setString(2, obj.getDescription());
+	    statement.executeUpdate();
+	}
+	catch (SQLException e) {
+	    e.printStackTrace();
+	}
+        return obj;
     }
 
     @Override
     public void delete(GommetteEntity obj) {
-        //TODO !
+	PreparedStatement statement;
+	try {
+	    statement =
+		this.connect.prepareStatement("DELETE FROM gommettes WHERE id = ?");
+	    statement.setInt(1, obj.getId());
+	    statement.executeUpdate();
+	}
+	catch (SQLException e) {
+	    e.printStackTrace();
+	}
     }
 }

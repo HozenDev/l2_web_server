@@ -18,7 +18,7 @@ public class ProfesseurDAO extends _Generic<ProfesseurEntity> {
                 entity.setFirstName(resultSet.getString("firstname"));
                 entity.setLastName(resultSet.getString("lastname"));
 		
-		entity.setGommette(resultSet.getString("listGommettes"));
+		entity.initGommette(); // compute the list of gommetteAttribuee
 		
                 entities.add(entity);
             }
@@ -31,12 +31,31 @@ public class ProfesseurDAO extends _Generic<ProfesseurEntity> {
 
     @Override
     public ProfesseurEntity create(ProfesseurEntity obj) {
-        //TODO !
-        return null;
+	PreparedStatement statement;
+	try {
+	    statement =
+		this.connect.prepareStatement("INSERT INTO professeurs (lastname, firstname) VALUES(?, ?);");
+	    statement.setString(1, obj.getLastName());
+	    statement.setString(2, obj.getFirstName());
+	    statement.executeUpdate();
+	}
+	catch (SQLException e) {
+	    e.printStackTrace();
+	}
+        return obj;
     }
 
     @Override
     public void delete(ProfesseurEntity obj) {
-        //TODO !
+	PreparedStatement statement;
+	try {
+	    statement =
+		this.connect.prepareStatement("DELETE FROM professeurs WHERE id = ?");
+	    statement.setInt(1, obj.getId());
+	    statement.executeUpdate();
+	}
+	catch (SQLException e) {
+	    e.printStackTrace();
+	}
     }
 }

@@ -11,4 +11,15 @@ public class EleveCore {
         return new EleveDAO().getAllUsers();
     }
 
+    public static EleveEntity create(EleveEntity obj) {
+	return new EleveDAO().create(obj);
+    }
+
+    public static void delete(EleveEntity obj) {
+	new EleveDAO().delete(obj);
+    }
+
+    public static ArrayList<EleveEntity> getUserById(int id) {
+        return new EleveDAO().getUserById(id);
+    }
 }
