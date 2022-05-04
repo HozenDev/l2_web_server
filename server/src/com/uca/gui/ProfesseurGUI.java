@@ -29,6 +29,36 @@ public class ProfesseurGUI {
         return output.toString();
     }
 
+    public static String login(String log) throws IOException, TemplateException {
+        Configuration configuration = _FreeMarkerInitializer.getContext();
+
+        Map<String, Object> input = new HashMap<>();
+
+        input.put("log", log);
+
+        Writer output = new StringWriter();
+        Template template = configuration.getTemplate("users/login.ftl");
+        template.setOutputEncoding("UTF-8");
+        template.process(input, output);
+
+        return output.toString();
+    }
+
+    public static String getUserById(int id) throws IOException, TemplateException {
+        Configuration configuration = _FreeMarkerInitializer.getContext();
+
+        Map<String, Object> input = new HashMap<>();
+
+        input.put("professeurs", ProfesseurCore.getUserById(id));
+
+        Writer output = new StringWriter();
+        Template template = configuration.getTemplate("professeurs/professeurs.ftl");
+        template.setOutputEncoding("UTF-8");
+        template.process(input, output);
+
+        return output.toString();
+    }
+    
     public static String create(ProfesseurEntity obj) throws IOException, TemplateException {
         return String.format("<p> %s a été créé. </p>", ProfesseurCore.create(obj).toString());
     }

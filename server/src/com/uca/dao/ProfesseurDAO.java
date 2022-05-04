@@ -17,6 +17,11 @@ public class ProfesseurDAO extends _Generic<ProfesseurEntity> {
                 entity.setId(resultSet.getInt("id"));
                 entity.setFirstName(resultSet.getString("firstname"));
                 entity.setLastName(resultSet.getString("lastname"));
+		entity.setUsername(resultSet.getString("username"));
+		entity.setPassword(resultSet.getString("password"));
+
+		System.out.println(resultSet.getString("password"));
+		System.out.println(resultSet.getString("username"));
 		
 		entity.initGommette(); // compute the list of gommetteAttribuee
 		
@@ -29,14 +34,50 @@ public class ProfesseurDAO extends _Generic<ProfesseurEntity> {
         return entities;
     }
 
+    public ArrayList<ProfesseurEntity> getUserById(int id) {
+	PreparedStatement statement;
+	ArrayList<ProfesseurEntity> entities = new ArrayList<>();
+	try {
+	    statement =
+		this.connect.prepareStatement("SELECT * FROM professeurs WHERE id = ?;");
+	    statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+	    if (resultSet.next()) {
+                ProfesseurEntity entity = new ProfesseurEntity();
+                entity.setId(resultSet.getInt("id"));
+                entity.setFirstName(resultSet.getString("firstname"));
+                entity.setLastName(resultSet.getString("lastname"));
+		entity.setUsername(resultSet.getString("username"));
+		entity.setPassword(resultSet.getString("password"));
+
+		System.out.println(resultSet.getString("password"));
+		System.out.println(resultSet.getString("username"));
+		
+		entity.initGommette(); // compute the list of gommetteAttribuee
+
+		entities.add(entity);
+	    }
+	}
+	catch (SQLException e) {
+	    e.printStackTrace();
+	}
+        return entities;
+    }
+
     @Override
     public ProfesseurEntity create(ProfesseurEntity obj) {
 	PreparedStatement statement;
 	try {
 	    statement =
-		this.connect.prepareStatement("INSERT INTO professeurs (lastname, firstname) VALUES(?, ?);");
+		this.connect.prepareStatement("INSERT INTO professeurs (lastname, firstname, username, password) VALUES(?, ?, ?, ?);");
 	    statement.setString(1, obj.getLastName());
 	    statement.setString(2, obj.getFirstName());
+	    statement.setString(3, obj.getUsername());
+	    statement.setString(4, obj.getPassword());
+
+	    System.out.println(obj.getUsername());
+	    System.out.println(obj.getPassword());
+	    
 	    statement.executeUpdate();
 	}
 	catch (SQLException e) {

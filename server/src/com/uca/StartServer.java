@@ -21,57 +21,28 @@ public class StartServer {
 
         _Initializer.Init();
 
-        //Defining our routes
-        get("/users", (req, res) -> {
-		return UserGUI.getAllUsers();
-	    });
+	//** Personnales routes **//
 
-	get("/users/login", (req, res) -> {
+	get("/login", (req, res) -> {
 		return UserGUI.login("");
 	    });
 	
-	post("/users/login", (req, res) -> {
-		if (!UserEntity.validLogin(req.queryParams("username"),
-					  req.queryParams("password"))) {
-		    return UserGUI.login("Nom d'utilisateur et mot de passe incorrects.");
+	post("/login", (req, res) -> {
+		if (!ProfesseurEntity.validLogin(req.queryParams("username"),
+						 req.queryParams("password"))) {
+		    System.out.println(req.queryParams("username"));
+		    System.out.println(req.queryParams("password"));
+		    return ProfesseurGUI.login("Nom d'utilisateur et mot de passe incorrects.");
 		}
-		UserEntity entity = UserEntity.getLogUser(req.queryParams("username"),
-							  req.queryParams("password"));
+		ProfesseurEntity entity = ProfesseurEntity.getLogUser(req.queryParams("username"),
+								      req.queryParams("password"));
 
 		res.cookie("logUser", ""+entity.getId());
 		req.session(true);
 		req.session().attribute("user", entity);
-		res.redirect("/users/"+entity.getId());
+		res.redirect("/professeurs/"+entity.getId());
 		return "Vous êtes connectés, redirection en cours...";
 	    });
-
-	post("/users/create", (req, res) -> {
-		UserEntity obj = new UserEntity();
-		obj.setFirstName(req.queryParams("lastname"));
-		obj.setLastName(req.queryParams("firstname"));
-		obj.setStatut(req.queryParams("statut"));
-		obj.setPassword(req.queryParams("password"));
-		obj.setUsername(req.queryParams("username"));
-		return UserGUI.create(obj);
-	    });
-
-	get("/users/delete/:id", (req, res) -> {
-		UserEntity obj = new UserEntity();
-		obj.setId(Integer.parseInt(req.params(":id")));
-		return UserGUI.delete(obj);
-	    });
-	
-	get("/users/:id", (req, res) -> {
-		if (!StartServer.isUserLog(req)) {
-		    res.redirect("/users/login");
-		}
-		if (Integer.parseInt(req.params(":id")) != Integer.parseInt(req.cookie("logUser"))) {
-		    halt(401, "<h2> 401 Unauthorized </h2>");
-		}
-		return UserGUI.getUserById(Integer.parseInt(req.params(":id")));
-	    });
-	
-        //** Personnales routes **//
 
 	//* Eleve routes *//
 	
@@ -106,6 +77,8 @@ public class StartServer {
 		ProfesseurEntity obj = new ProfesseurEntity();
 		obj.setFirstName(req.queryParams("lastname"));
 		obj.setLastName(req.queryParams("firstname"));
+		obj.setUsername(req.queryParams("username"));
+		obj.setPassword(req.queryParams("password"));
 		return ProfesseurGUI.create(obj);
 	    });
 
@@ -113,6 +86,16 @@ public class StartServer {
 		ProfesseurEntity obj = new ProfesseurEntity();
 		obj.setId(Integer.parseInt(req.params(":id")));
 		return ProfesseurGUI.delete(obj);
+	    });
+
+	get("/professeurs/:id", (req, res) -> {
+		if (!StartServer.isUserLog(req)) {
+		    res.redirect("/login");
+		}
+		if (Integer.parseInt(req.params(":id")) != Integer.parseInt(req.cookie("logUser"))) {
+		    halt(401, "<h2> 401 Unauthorized </h2>");
+		}
+		return ProfesseurGUI.getUserById(Integer.parseInt(req.params(":id")));
 	    });
 
 	//* Gommettes routes *//

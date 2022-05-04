@@ -10,9 +10,9 @@ curl -d "lastname=Lefou&firstname=Georges" -X POST "http://localhost:8081/eleves
 
 echo '\n\nCréation des professeurs...\n'
 
-curl -d "lastname=Cest&firstname=Bastien" -X POST "http://localhost:8081/professeurs/create"
-curl -d "lastname=Sarah&firstname=Croche" -X POST "http://localhost:8081/professeurs/create"
-curl -d "lastname=Barack&firstname=Obama" -X POST "http://localhost:8081/professeurs/create"
+curl -d "lastname=Cest&firstname=Bastien&username=cebastien&password=1234" -X POST "http://localhost:8081/professeurs/create"
+curl -d "lastname=Sarah&firstname=Croche&username=sacroche&password=1234" -X POST "http://localhost:8081/professeurs/create"
+curl -d "lastname=Barack&firstname=Obama&username=baobama&password=1234" -X POST "http://localhost:8081/professeurs/create"
 
 echo '\n\nCréation des gommettes...\n'
 
@@ -25,15 +25,5 @@ echo '\n\nAttribution des gommettes...\n'
 curl -d "id_student=1&id_prof=1&id_gommette=3&date=13/04/2022&behavior=Il a taclé un aveugle" -X POST "http://localhost:8081/gommettesAttribuees/create"
 curl -d "id_student=2&id_prof=3&id_gommette=2&date=11/03/2022&behavior=Il a parlé en langue des signes avec son camarade, ça m'a rendu fou !" -X POST "http://localhost:8081/gommettesAttribuees/create"
 curl -d "id_student=2&id_prof=2&id_gommette=1&date=12/04/2022&behavior=Il a mangé son cahier de textes" -X POST "http://localhost:8081/gommettesAttribuees/create"
-
-echo '\n\nCréation des utilisateurs...\n'
-
-curl -d "lastname=Durel&firstname=Enzo&statut=Dieu&username=god&password=" -X POST "http://localhost:8081/users/create"
-curl -d "lastname=Perdu&firstname=Timothé&statut=Eleve&username=thperdu&password=thperdu" -X POST "http://localhost:8081/users/create"
-curl -d "lastname=Lefou&firstname=Georges&statut=Eleve&username=gelefou&password=gelefou" -X POST "http://localhost:8081/users/create"
-
-curl -d "lastname=Cest&firstname=Bastien&statut=Professeur&username=cebastien&password=cebastien" -X POST "http://localhost:8081/users/create"
-curl -d "lastname=Sarag&firstname=Croche&statut=Professeur&username=sacroche&password=sacroche" -X POST "http://localhost:8081/users/create"
-curl -d "lastname=Barack&firstname=Obama&statut=Professeur&username=baobama&password=baobama" -X POST "http://localhost:8081/users/create"
 
 echo '\n\nTerminé'

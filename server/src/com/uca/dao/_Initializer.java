@@ -12,9 +12,7 @@ public class _Initializer {
 
 
 		 //Ceer si n'existe pas !
-        statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS users (id int primary key auto_increment, statut varchar(100), username varchar(100), password varchar(100), firstname varchar(100), lastname varchar(100)); ");
-	    statement.executeUpdate();
-        statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS professeurs (id int primary key auto_increment, firstname varchar(100), lastname varchar(100)); ");
+	    statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS professeurs (id int primary key auto_increment, firstname varchar(100), lastname varchar(100), username varchar(100), password varchar(100)); ");
 	    statement.executeUpdate();
 	    statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS eleves (id int primary key auto_increment, firstname varchar(100), lastname varchar(100)); ");
 	    statement.executeUpdate();
@@ -24,8 +22,6 @@ public class _Initializer {
 	    statement.executeUpdate();
 
 	    // remove all instance in sql base
-	    statement = connection.prepareStatement("TRUNCATE TABLE users");
-	    statement.executeUpdate();
 	    statement = connection.prepareStatement("TRUNCATE TABLE professeurs");
 	    statement.executeUpdate();
 	    statement = connection.prepareStatement("TRUNCATE TABLE eleves");
@@ -41,16 +37,12 @@ public class _Initializer {
 	    statement = connection.prepareStatement("DROP TABLE eleves");
 	    statement.executeUpdate();	    
 	    statement = connection.prepareStatement("DROP TABLE gommettes");
-	    statement.executeUpdate();
-	    statement = connection.prepareStatement("DROP TABLE users");
 	    statement.executeUpdate();	    
 	    statement = connection.prepareStatement("DROP TABLE professeurs");
 	    statement.executeUpdate();
 	    
             //Init articles table
-            statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS users (id int primary key auto_increment, statut varchar(100), username varchar(100), password varchar(100), firstname varchar(100), lastname varchar(100)); ");
-	    statement.executeUpdate();
-            statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS professeurs (id int primary key auto_increment, firstname varchar(100), lastname varchar(100)); ");
+            statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS professeurs (id int primary key auto_increment, firstname varchar(100), lastname varchar(100), username varchar(100), password varchar(100)); ");
 	    statement.executeUpdate();
 	    statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS eleves (id int primary key auto_increment, firstname varchar(100), lastname varchar(100)); ");
 	    statement.executeUpdate();

@@ -11,6 +11,10 @@ public class ProfesseurCore {
         return new ProfesseurDAO().getAllUsers();
     }
 
+    public static ArrayList<ProfesseurEntity> getUserById(int id) {
+        return new ProfesseurDAO().getUserById(id);
+    }
+    
     public static ProfesseurEntity create(ProfesseurEntity obj) {
 	return new ProfesseurDAO().create(obj);
     }

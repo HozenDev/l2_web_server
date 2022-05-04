@@ -9,6 +9,8 @@ public class ProfesseurEntity {
     private int id;
     private String lastName;
     private String firstName;
+    private String password;
+    private String username;
     private String classe;
     private ArrayList<GommetteAttribueeEntity> listGommettes;
 
@@ -40,6 +42,22 @@ public class ProfesseurEntity {
 
     // Setters //
 
+    public String getPassword() {
+	return this.password;
+    }
+
+    public void setPassword(String password) {
+	this.password = password;
+    }
+    
+    public String getUsername() {
+	return this.username;
+    }
+
+    public void setUsername(String username) {
+	this.username = username;
+    }
+    
     public void setId(int id) {
 	this.id = id;
     }
@@ -82,6 +100,64 @@ public class ProfesseurEntity {
 	    System.out.println(e.toString());
 	    throw new RuntimeException("could not recup data professor");
 	}
+    }
+
+        public static ProfesseurEntity getLogUser(String username, String password) {
+	ProfesseurEntity entity = null;
+
+	Connection connect = _Connector.getInstance();
+	PreparedStatement statement;
+	ResultSet resultSet;
+
+	try {
+	    statement =
+		connect.prepareStatement("SELECT * FROM professeurs WHERE username = ? AND password = ?;");
+	    statement.setString(1, username);
+	    statement.setString(2, password);
+	    resultSet = statement.executeQuery();
+	    if (resultSet.next()) {
+		entity = new ProfesseurEntity();
+		entity.setId(resultSet.getInt("id"));
+                entity.setFirstName(resultSet.getString("firstname"));
+                entity.setLastName(resultSet.getString("lastname"));
+		entity.setUsername(resultSet.getString("username"));
+		entity.setPassword(resultSet.getString("password"));
+       
+		entity.initGommette();
+	    }
+	}
+	catch (Exception e) {
+	    System.out.println(e.toString());
+	    throw new RuntimeException("SQL Error: PWD and UN incorrects");
+	}
+	return entity;
+    }
+     
+    public static boolean validLogin(String username, String password) {
+	boolean isvalid = false;
+
+	Connection connect = _Connector.getInstance();
+	PreparedStatement statement;
+	ResultSet resultSet;
+
+	try {
+	    statement =
+		connect.prepareStatement("SELECT * FROM professeurs WHERE username = ? AND password = ?;");
+	    statement.setString(1, username);
+	    statement.setString(2, password);
+	    resultSet = statement.executeQuery();
+	    if (resultSet.next()) {
+		isvalid = true;
+	    }
+	    else {
+		System.out.println("NOn trouvé");
+	    }
+	}
+	catch (Exception e) {
+	    System.out.println(e.toString());
+	    throw new RuntimeException("SQL Error: PWD and UN incorrects");
+	}
+	return isvalid;
     }
 
     @Override
