@@ -27,6 +27,41 @@ public class GommetteDAO extends _Generic<GommetteEntity> {
         return entities;
     }
 
+    public GommetteEntity getUserById(int id) {
+        GommetteEntity entity = new GommetteEntity();
+        try {
+            PreparedStatement preparedStatement =
+		this.connect.prepareStatement("SELECT * FROM gommettes WHERE id = ?;");
+	    preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {                
+                entity.setId(resultSet.getInt("id"));
+                entity.setColor(resultSet.getString("color"));
+                entity.setDescription(resultSet.getString("description"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return entity;
+    }
+
+    public GommetteEntity modify(GommetteEntity obj) {
+	PreparedStatement statement;
+	try {
+	    statement =
+		this.connect.prepareStatement("UPDATE gommettes SET color = ?, description = ? WHERE id = ?");
+	    statement.setString(1, obj.getColor());
+	    statement.setString(2, obj.getDescription());
+	    statement.setInt(3, obj.getId());
+	    statement.executeUpdate();
+	}
+	catch (SQLException e) {
+	    e.printStackTrace();
+	}
+        return obj;
+    }
+
     @Override
     public GommetteEntity create(GommetteEntity obj) {
 	PreparedStatement statement;
@@ -47,6 +82,11 @@ public class GommetteDAO extends _Generic<GommetteEntity> {
     public void delete(GommetteEntity obj) {
 	PreparedStatement statement;
 	try {
+	    statement =
+		this.connect.prepareStatement("DELETE FROM gommettesAttribuees WHERE id_gommette = ?");
+	    statement.setInt(1, obj.getId());
+	    statement.executeUpdate();
+
 	    statement =
 		this.connect.prepareStatement("DELETE FROM gommettes WHERE id = ?");
 	    statement.setInt(1, obj.getId());

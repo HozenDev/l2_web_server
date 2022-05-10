@@ -15,12 +15,14 @@ import java.util.Map;
 
 public class EleveGUI {
 
-    public static String getAllUsers() throws IOException, TemplateException {
+    public static String getAllUsers(boolean userLog, int userId) throws IOException, TemplateException {
         Configuration configuration = _FreeMarkerInitializer.getContext();
 
         Map<String, Object> input = new HashMap<>();
 
-        input.put("eleves", EleveCore.getAllUsers());
+	input.put("userLog", userLog);
+	input.put("userId", userId);
+	input.put("eleves", EleveCore.getAllUsers());
 
         Writer output = new StringWriter();
         Template template = configuration.getTemplate("eleves/eleves.ftl");
@@ -30,32 +32,51 @@ public class EleveGUI {
         return output.toString();
     }
 
-    public static String getUserById(int id) throws IOException, TemplateException {
+    public static String getUserById(int id, boolean userLog) throws IOException, TemplateException {
         Configuration configuration = _FreeMarkerInitializer.getContext();
 
         Map<String, Object> input = new HashMap<>();
 
-        input.put("eleves", EleveCore.getUserById(id));
+        input.put("eleve", EleveCore.getUserById(id));
+	input.put("userLog", userLog);
 
         Writer output = new StringWriter();
-        Template template = configuration.getTemplate("eleves/eleves.ftl");
+        Template template = configuration.getTemplate("eleves/eleve.ftl");
         template.setOutputEncoding("UTF-8");
         template.process(input, output);
 
         return output.toString();
     }
 
-    public static String create(EleveEntity obj) throws IOException, TemplateException {
-        return String.format("<p> %s a été créé. </p>", EleveCore.create(obj).toString());
+    public static String modify(int id, boolean userLog, String log) throws IOException, TemplateException {
+        Configuration configuration = _FreeMarkerInitializer.getContext();
+
+        Map<String, Object> input = new HashMap<>();
+
+        input.put("eleve", EleveCore.getUserById(id));
+	input.put("userLog", userLog);
+	input.put("log", log);
+
+        Writer output = new StringWriter();
+        Template template = configuration.getTemplate("eleves/modify.ftl");
+        template.setOutputEncoding("UTF-8");
+        template.process(input, output);
+
+        return output.toString();
     }
 
-    public static String delete(EleveEntity obj) throws IOException, TemplateException {
-	try {
-	    EleveCore.delete(obj);
-	}
-	catch (Exception e) {
-	    throw new RuntimeException("impossible de supprimer l'élève.");
-	}
-        return "<p> L'élève a été supprimé. </p>";
+    public static String create(String log) throws IOException, TemplateException {
+	Configuration configuration = _FreeMarkerInitializer.getContext();
+
+        Map<String, Object> input = new HashMap<>();
+
+        input.put("log", log);
+
+        Writer output = new StringWriter();
+        Template template = configuration.getTemplate("eleves/create.ftl");
+        template.setOutputEncoding("UTF-8");
+        template.process(input, output);
+
+        return output.toString();
     }
 }

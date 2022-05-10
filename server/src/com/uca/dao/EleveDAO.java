@@ -29,6 +29,22 @@ public class EleveDAO extends _Generic<EleveEntity> {
         return entities;
     }
 
+    public EleveEntity modify(EleveEntity obj) {
+	PreparedStatement statement;
+	try {
+	    statement =
+		this.connect.prepareStatement("UPDATE eleves SET lastname = ?, firstname = ? WHERE id = ?;");
+	    statement.setString(1, obj.getLastName());
+	    statement.setString(2, obj.getFirstName());
+	    statement.setInt(3, obj.getId());
+	    statement.executeUpdate();
+	}
+	catch (SQLException e) {
+	    e.printStackTrace();
+	}
+	return obj;
+    }
+
     @Override
     public EleveEntity create(EleveEntity obj) {
 	PreparedStatement statement;
@@ -50,6 +66,11 @@ public class EleveDAO extends _Generic<EleveEntity> {
 	PreparedStatement statement;
 	try {
 	    statement =
+		this.connect.prepareStatement("DELETE FROM gommettesAttribuees WHERE id_student = ?;");
+	    statement.setInt(1, obj.getId());
+	    statement.executeUpdate();
+
+	    statement =
 		this.connect.prepareStatement("DELETE FROM eleves WHERE id = ?");
 	    statement.setInt(1, obj.getId());
 	    statement.executeUpdate();
@@ -59,26 +80,25 @@ public class EleveDAO extends _Generic<EleveEntity> {
 	}
     }
 
-    public ArrayList<EleveEntity> getUserById(int id) {
+    public EleveEntity getUserById(int id) {
 	PreparedStatement statement;
-	ArrayList<EleveEntity> entities = new ArrayList<>();
+	EleveEntity entity = new EleveEntity();
 	try {
 	    statement =
 		this.connect.prepareStatement("SELECT * FROM eleves WHERE id = ?;");
 	    statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
 	    if (resultSet.next()) {
-                EleveEntity entity = new EleveEntity();
                 entity.setId(resultSet.getInt("id"));
                 entity.setFirstName(resultSet.getString("firstname"));
                 entity.setLastName(resultSet.getString("lastname"));
+
 		entity.initGommette();
-		entities.add(entity);
 	    }
 	}
 	catch (SQLException e) {
 	    e.printStackTrace();
 	}
-        return entities;
+        return entity;
     }
 }

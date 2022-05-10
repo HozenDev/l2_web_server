@@ -149,9 +149,6 @@ public class ProfesseurEntity {
 	    if (resultSet.next()) {
 		isvalid = true;
 	    }
-	    else {
-		System.out.println("NOn trouvé");
-	    }
 	}
 	catch (Exception e) {
 	    System.out.println(e.toString());

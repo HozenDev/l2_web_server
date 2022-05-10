@@ -1,7 +1,7 @@
 form {
     margin: 0 auto;
-    width: 30em;
-    margin-top: 3em;
+    width: 40em;
+    margin-top: 10rem;
     background-color: #CCCCCC;
     border-radius: 2rem;
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.5);
@@ -47,4 +47,8 @@ input[type="text"] {
 input[type="submit"] {
     padding: .5rem;
     margin: .5rem;
+}
+
+textarea {
+  resize: vertical;
 }

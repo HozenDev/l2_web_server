@@ -17,6 +17,14 @@ public class GommetteCore {
 
     public static void delete(GommetteEntity obj) {
 	new GommetteDAO().delete(obj);
-    }    
+    }
+
+    public static GommetteEntity getUserById(int id) {
+	return new GommetteDAO().getUserById(id);
+    }
+
+    public static GommetteEntity modify(GommetteEntity obj) {
+	return new GommetteDAO().modify(obj);
+    }
 
 }

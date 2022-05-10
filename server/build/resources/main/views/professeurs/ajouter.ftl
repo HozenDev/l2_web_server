@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<head>
+  <style type="text/css">  
+  <#include "../style/reset.css">
+  <#include "../style/ent.css">
+  </style>
+</head>
+<body>
+      <div class="info">
+         <ul>
+	    <li>
+	        <h1> Liste des élèves </h1>
+	    </li>
+	    <#list eleves as eleve>
+	    <li class="eleve">
+	    	  <div class="eleve_head">
+		  <h2> ${eleve.getLastName()} ${eleve.getFirstName()} </h2>
+	    	  <a href="/gommettes/attribuees/create/${eleve.getId()}">
+	    	        Ajouter une gommette
+	      	  </a>
+	    	  <a href="/eleves/${eleve.getId()}"> Profil </a>
+		  </div>
+	    	  <ul>
+		    <#list eleve.getAllGommettes() as eleve_g>
+	    	    <li> <p> ${eleve_g} </p> </li>
+	    	    </#list>
+	         </ul>
+	    </li>
+	    </#list>
+	 </ul>
+      </div>
+</body>
+</html>

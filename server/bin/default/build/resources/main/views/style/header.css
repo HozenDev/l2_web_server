@@ -1,0 +1,31 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+}
+
+.navbar > ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.navbar > ul > li {
+    padding: 2rem;
+}
+
+.navbar > ul > li > a {
+    text-decoration: none;
+    color: white;
+    font-size: 100%;
+    transition: .15s;
+}
+
+.navbar > ul > li > a:hover {
+    color: #55F;
+    font-size: 150%;
+    transition: .15s;
+}

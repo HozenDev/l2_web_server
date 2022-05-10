@@ -19,7 +19,11 @@ public class EleveCore {
 	new EleveDAO().delete(obj);
     }
 
-    public static ArrayList<EleveEntity> getUserById(int id) {
+    public static EleveEntity getUserById(int id) {
         return new EleveDAO().getUserById(id);
+    }
+
+    public static EleveEntity modify(EleveEntity obj) {
+	return new EleveDAO().modify(obj);
     }
 }

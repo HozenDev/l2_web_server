@@ -14,12 +14,14 @@ import java.util.Map;
 
 public class GommetteGUI {
 
-    public static String getAllUsers() throws IOException, TemplateException {
+    public static String getAllUsers(boolean userLog, int userId) throws IOException, TemplateException {
         Configuration configuration = _FreeMarkerInitializer.getContext();
 
         Map<String, Object> input = new HashMap<>();
 
         input.put("gommettes", GommetteCore.getAllUsers());
+	input.put("userLog", userLog);
+	input.put("userId", userId);
 
         Writer output = new StringWriter();
         Template template = configuration.getTemplate("gommettes/gommettes.ftl");
@@ -29,17 +31,35 @@ public class GommetteGUI {
         return output.toString();
     }
 
-    public static String create(GommetteEntity obj) throws IOException, TemplateException {
-        return String.format("<p> %s a été créé. </p>", GommetteCore.create(obj).toString());
+    public static String create(String log) throws IOException, TemplateException {
+	Configuration configuration = _FreeMarkerInitializer.getContext();
+
+        Map<String, Object> input = new HashMap<>();
+
+        input.put("log", log);
+
+        Writer output = new StringWriter();
+        Template template = configuration.getTemplate("gommettes/create.ftl");
+        template.setOutputEncoding("UTF-8");
+        template.process(input, output);
+
+        return output.toString();
     }
 
-    public static String delete(GommetteEntity obj) throws IOException, TemplateException {
-	try {
-	    GommetteCore.delete(obj);
-	}
-	catch (Exception e) {
-	    throw new RuntimeException("impossible de supprimer l'élève.");
-	}
-        return "<p> La gommette a été supprimé. </p>";
-    }    
+    public static String modify(int id, boolean userLog, String log) throws IOException, TemplateException {
+        Configuration configuration = _FreeMarkerInitializer.getContext();
+
+        Map<String, Object> input = new HashMap<>();
+
+        input.put("gommette", GommetteCore.getUserById(id));
+	input.put("userLog", userLog);
+	input.put("log", log);
+
+        Writer output = new StringWriter();
+        Template template = configuration.getTemplate("gommettes/modify.ftl");
+        template.setOutputEncoding("UTF-8");
+        template.process(input, output);
+
+        return output.toString();
+    }
 }

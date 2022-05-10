@@ -1,12 +1,15 @@
-<html>
+<#import "../macros/navheader.ftl" as nh>
+<!DOCTYPE html>
 <head>
   <style type="text/css">  
   <#include "../style/reset.css">
   <#include "../style/form.css">
+  <#include "../style/header.css">
   </style>
 </head>
 <body>
-  <form method="post" onsubmit="/users/login">
+  <@nh.navheadbar userIsLog=(userLog)!true id="${userId}"/>
+  <form method="post" action="/login">
     <ul>
       <li>
         <h2> Connexion </h2>
