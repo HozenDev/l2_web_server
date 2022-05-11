@@ -14,12 +14,12 @@ import java.util.Map;
 
 public class GommetteGUI {
 
-    public static String getAllUsers(boolean userLog, int userId) throws IOException, TemplateException {
+    public static String getAllGommettes(boolean userLog, int userId) throws IOException, TemplateException {
         Configuration configuration = _FreeMarkerInitializer.getContext();
 
         Map<String, Object> input = new HashMap<>();
 
-        input.put("gommettes", GommetteCore.getAllUsers());
+        input.put("gommettes", GommetteCore.getAllGommettes());
 	input.put("userLog", userLog);
 	input.put("userId", userId);
 
@@ -51,7 +51,7 @@ public class GommetteGUI {
 
         Map<String, Object> input = new HashMap<>();
 
-        input.put("gommette", GommetteCore.getUserById(id));
+        input.put("gommette", GommetteCore.getGommetteById(id));
 	input.put("userLog", userLog);
 	input.put("log", log);
 

@@ -1,11 +1,9 @@
 <#import "../macros/navheader.ftl" as nh>
 <!DOCTYPE html>
 <head>
-  <style type="text/css">  
-  <#include "../style/reset.css">
-  <#include "../style/ent.css">
-  <#include "../style/header.css">
-  </style>
+<link rel='stylesheet' href='/reset.css'>
+<link rel='stylesheet' href='/ent.css'>
+<link rel='stylesheet' href='/header.css'>
 </head>
 <body>
   <@nh.navheadbar userIsLog=(userLog)!true id="${userId}"/>
@@ -16,6 +14,7 @@
 	    </li>
 	    <#list gommettes as gommette>
 	    <li class="gommette">
+	       <p class="g_btn ${gommette.getColor()}"> </p>
 	       <h3>${gommette.getColor()}: ${gommette.getDescription()}</h3>
 	       <#if (userLog)!false>
 		 <a href="/gommettes/modify/${gommette.getId()}"> Modifier </a>

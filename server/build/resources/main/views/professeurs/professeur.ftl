@@ -2,11 +2,9 @@
 
 <!DOCTYPE html>
 <head>
-  <style type="text/css">  
-  <#include "../style/reset.css">
-  <#include "../style/ent.css">
-  <#include "../style/header.css">
-  </style>
+<link rel='stylesheet' href='/reset.css'>
+<link rel='stylesheet' href='/ent.css'>
+<link rel='stylesheet' href='/header.css'>
 </head>
 <body>
      <@nh.navheadbar userIsLog=(userLog)!true id="${professeur.getId()}"/>
@@ -17,7 +15,6 @@
 	   </li>
 	   <li>
       	   <h2> Nom d'utilisateur : ${professeur.getUsername()} </h2>
-	   <h2> Mot de Passe : ${professeur.getPassword()} </h2>
 	 </li>
 	 <li>
 	   <a href="/eleves/create"> Créer un élève </a>
@@ -33,8 +30,13 @@
 		<li id="list_of">
 		<h3> Liste des gommettes attribuées par le professeur </h3>
 		</li>
-		<#list professeur.getAllGommettes() as p_lg>
-      	   	       <li> ${p_lg} </li>
+		<#list professeur.getAllGommettes() as g>
+      	   	       <li>
+		       <p class="g_btn ${g.getColor()}"> </p>
+		       <p>
+			 (${g.getColor()}) - ${g.getDate()} | à ${g.getEleveNames()}, pour motif: ${g.getBehavior()}
+		       </p>
+		       </li>
       	   	</#list>
      	</ul>
 	</li>

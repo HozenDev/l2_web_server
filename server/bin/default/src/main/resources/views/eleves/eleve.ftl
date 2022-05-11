@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <head>
-  <style type="text/css">  
-  <#include "../style/reset.css">
-  <#include "../style/ent.css">
-  </style>
+<link rel='stylesheet' href='/reset.css'>
+<link rel='stylesheet' href='/ent.css'>
 </head>
 <body>
      <div class="info">

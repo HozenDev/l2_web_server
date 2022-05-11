@@ -15,32 +15,17 @@ import java.util.Map;
 
 public class GommetteAttribueeGUI {
 
-    public static String getAllUsers() throws IOException, TemplateException {
-        Configuration configuration = _FreeMarkerInitializer.getContext();
-
-        Map<String, Object> input = new HashMap<>();
-
-        input.put("gommettesAttribuees", GommetteAttribueeCore.getAllUsers());
-
-        Writer output = new StringWriter();
-        Template template = configuration.getTemplate("gommettesAttribuees/gommettesAttribuees.ftl");
-        template.setOutputEncoding("UTF-8");
-        template.process(input, output);
-
-        return output.toString();
-    }
-
     public static String create(int id_student, String log) throws IOException, TemplateException {
 	Configuration configuration = _FreeMarkerInitializer.getContext();
 
         Map<String, Object> input = new HashMap<>();
 
         input.put("log", log);
-	input.put("gommettes", GommetteCore.getAllUsers());
+	input.put("gommettes", GommetteCore.getAllGommettes());
 	input.put("id_student", id_student);
 
         Writer output = new StringWriter();
-        Template template = configuration.getTemplate("gommettesAttribuees/create.ftl");
+        Template template = configuration.getTemplate("gommettes/attribuees/create.ftl");
         template.setOutputEncoding("UTF-8");
         template.process(input, output);
 

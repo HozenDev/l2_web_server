@@ -1,11 +1,9 @@
 <#import "../macros/navheader.ftl" as nh>
 <!DOCTYPE html>
 <head>
-  <style type="text/css">  
-  <#include "../style/reset.css">
-  <#include "../style/ent.css">
-  <#include "../style/header.css">
-  </style>
+<link rel='stylesheet' href='/reset.css'>
+<link rel='stylesheet' href='/ent.css'>
+<link rel='stylesheet' href='/header.css'>
 </head>
 <body>
       <@nh.navheadbar userIsLog=(userLog)!true id="${userId}"/>
@@ -15,8 +13,8 @@
 	        <h1> Liste des élèves </h1>
 	    </li>
 	    <#list eleves as eleve>
-	    <li class="eleve">
-	    	  <div class="eleve_head">
+	    <li class="list">
+	    	  <div class="list_head">
 		  <h2> ${eleve.getLastName()} ${eleve.getFirstName()} </h2>
 		  <#if (userLog)!false>
 	    	  <a href="/gommettes/attribuees/create/${eleve.getId()}">
@@ -28,11 +26,14 @@
 	    	  <a href="/eleves/${eleve.getId()}"> Profil </a>
 		  </div>
 	    	  <ul>
-		    <#list eleve.getAllGommettes() as eleve_g>
+		    <#list eleve.getAllGommettes() as g>
 	    	      <li>
-			<p> ${eleve_g} </p>
+		        <p class="g_btn ${g.getColor()}"> </p>
+			<p>
+			  (${g.getColor()}) - ${g.getDate()} | ${g.getProfNames()}: ${g.getBehavior()}
+			</p>
 			<#if (userLog)!false>
-			<a href="/gommettes/attribuees/delete/${eleve_g.getId()}"> Supprimer </a>
+			<a href="/gommettes/attribuees/delete/${g.getId()}"> Supprimer </a>
 			</#if>
 		      </li>
 	    	    </#list>

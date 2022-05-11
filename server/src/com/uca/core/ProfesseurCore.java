@@ -7,12 +7,12 @@ import java.util.ArrayList;
 
 public class ProfesseurCore {
 
-    public static ArrayList<ProfesseurEntity> getAllUsers() {
-        return new ProfesseurDAO().getAllUsers();
+    public static ArrayList<ProfesseurEntity> getAllProfesseurs() {
+        return new ProfesseurDAO().getAllProfesseurs();
     }
 
-    public static ProfesseurEntity getUserById(int id) {
-        return new ProfesseurDAO().getUserById(id);
+    public static ProfesseurEntity getProfesseurById(int id) {
+        return new ProfesseurDAO().getProfesseurById(id);
     }
     
     public static ProfesseurEntity create(ProfesseurEntity obj) {

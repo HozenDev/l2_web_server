@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class EleveDAO extends _Generic<EleveEntity> {
 
-    public ArrayList<EleveEntity> getAllUsers() {
+    public ArrayList<EleveEntity> getAllEleves() {
         ArrayList<EleveEntity> entities = new ArrayList<>();
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement("SELECT * FROM eleves ORDER BY id ASC;");
@@ -80,7 +80,7 @@ public class EleveDAO extends _Generic<EleveEntity> {
 	}
     }
 
-    public EleveEntity getUserById(int id) {
+    public EleveEntity getEleveById(int id) {
 	PreparedStatement statement;
 	EleveEntity entity = new EleveEntity();
 	try {

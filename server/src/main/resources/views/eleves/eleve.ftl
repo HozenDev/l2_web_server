@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <head>
-  <style type="text/css">  
-  <#include "../style/reset.css">
-  <#include "../style/ent.css">
-  </style>
+<link rel='stylesheet' href='/reset.css'>
+<link rel='stylesheet' href='/ent.css'>
 </head>
 <body>
      <div class="info">
@@ -16,8 +14,13 @@
 		<li id="list_of">
 		<h3> Liste des gommettes attribuées par les professeurs </h3>
 		</li>
-		<#list eleve.getAllGommettes() as p_lg>
-      	   	       <li> ${p_lg} </li>
+		<#list eleve.getAllGommettes() as g>
+      	   	  <li>
+		    <p class="g_btn ${g.getColor()}"> </p>
+		    <p>
+		      (${g.getColor()}) - ${g.getDate()} | ${g.getProfNames()}: ${g.getBehavior()}
+		    </p>
+		  </li>
       	   	</#list>
      	</ul>
 	</li>

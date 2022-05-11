@@ -1,12 +1,10 @@
 <html>
 <head>
-  <style type="text/css">  
-  <#include "../style/reset.css">
-  <#include "../style/form.css">
-  </style>
+  <link rel='stylesheet' href='/reset.css'>
+  <link rel='stylesheet' href='/form.css'>
 </head>
 <body>
-  <form method="post" onsubmit="/eleves/create">
+  <form method="post" action="/eleves/create">
     <ul>
       <li>
         <h2> Création d'un élève </h2>
@@ -21,6 +19,7 @@
       </li>
       <li>
 	<input type="submit" value="Créer"/>
+	<p> ${log} </p>
       </li>
     </ul>
   </form>

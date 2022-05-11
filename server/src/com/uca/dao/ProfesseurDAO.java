@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class ProfesseurDAO extends _Generic<ProfesseurEntity> {
 
-    public ArrayList<ProfesseurEntity> getAllUsers() {
+    public ArrayList<ProfesseurEntity> getAllProfesseurs() {
         ArrayList<ProfesseurEntity> entities = new ArrayList<>();
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement("SELECT * FROM professeurs ORDER BY id ASC;");
@@ -31,7 +31,7 @@ public class ProfesseurDAO extends _Generic<ProfesseurEntity> {
         return entities;
     }
 
-    public ProfesseurEntity getUserById(int id) {
+    public ProfesseurEntity getProfesseurById(int id) {
 	PreparedStatement statement;
 	ProfesseurEntity entity = new ProfesseurEntity();
 	try {

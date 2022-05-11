@@ -1,0 +1,281 @@
+#+SETUPFILE: ./setupfiles/setup_texfile.org
+
+# Custom headers
+
+#+LATEX_HEADER: \lhead{DUREL Enzo, VILLEPREUX Thibault}
+#+LATEX_HEADER: \rhead{Serveur Web}
+
+# After begin document
+
+#+LATEX: \thispagestyle{fancy}
+
+#+AUTHOR: DUREL Enzo, VILLEPREUX Thibault
+#+EMAIL: enzo.durel@etu.uca.fr, thibault.villepreux@etu.uca.fr
+#+TITLE: Serveur Web
+
+#+LATEX: \newpage
+
+* Introduction
+
+  Nous avons créé un serveur.
+
+* Fonctionnalités importantes
+
+  #+begin_quote
+  Quelles sont les fonctionnalités qui vous semblent importantes ?
+  #+end_quote
+
+  L'objectif est de créer un dispositif où les élèves peuvent consulter leur carnet dématérialisé. Il faut également prévoir la possibilité à un professeur de mettre des gommettes à un élève.
+
+  Plus précisément, si le professeur est connecté il peut faire plusieurs actions :
+  + ajouter, supprimer ou modifier un élève (son nom et son prénom)
+  + lister, ajouter ou supprimer une gommette attribuée à un élève. Une gommette attribuée possède une date, un motif et une gommette principale qui elle-même contient une couleur (rouge, vert ou blanc) et une description générale.
+  + créer un nouveau professeur
+  + se déconnecter de sa session
+
+  En revanche tout le monde a accès à la liste des gommettes configurées et la liste des gommettes de chaque élève, avec possibilité de voir le professeur ayant mis la gommette.
+
+* Principales classes
+
+  #+caption: UML des entités
+  [[./uml.png]]
+
+  Image disponible [[./uml.png][ici]] (./web-server/rapport/uml.png)
+
+  #+begin_quote
+  Quelles vont être les principales classes de votre applications ?
+  #+end_quote
+
+* Bases de données 
+
+  #+begin_quote
+  Quelles vont être les tables de votre base de données ?
+  #+end_quote
+
+  Chaque classe principale possède une table dans la base de donnée relationnelle. 
+
+  La table "PROFESSEURS" comme son nom l'indique représente la classe ProfesseurEntity, voici sa représentation avec quelques exemples :
+
+
+  | Id (INT, primary key) | Firstname ( VARCHAR 100) | Lastname (VARCHAR 100) | Usrename (VARCHAR  100) | Password (VARCHAR 100) |
+  |-----------------------+--------------------------+------------------------+-------------------------+------------------------|
+  |                     1 | Paul                     | Boulanger              | paboulanger             | password               |
+  |                     2 | Jules                    | Verne                  | juverne                 | azerty1234             |
+  |                     3 | Georges                  | Lefou                  | gelefou                 | 123456789              |
+
+
+  La table "ELEVES" comme son nom l'indique représente la classe EleveEntity, voici sa représentation avec quelques exemples :
+
+  | Id (INT, primary key) | Firstname ( VARCHAR 100) | Lastname (VARCHAR 100) |
+  |-----------------------+--------------------------+------------------------|
+  |                     1 | Jean                     | Valjean                |
+  |                     2 | Thomas                   | Ducarquoi              |
+  |                     3 | Timothée                 | Louis                  |
+
+
+  La table "GOMMETTES" comme son nom l'indique représente la classe GommetteEntity, voici sa représentation avec quelques exemples :
+
+  | Id (INT, primary key) | Color (VARCHAR 50) | Description (VARCHAR 100) |
+  |-----------------------+--------------------+---------------------------|
+  |                     1 | Rouge              | Bavardage                 |
+  |                     2 | Vert               | Excellente note           |
+  |                     3 | Blanc              | Nettoie les toilettes     |
+
+
+  La table "GOMMETTESATTRIBUEES" comme son nom l'indique représente la classe GommetteAttribueeEntity, voici sa représentation avec quelques exemples :
+
+  | Id (INT, primary key) | Id_student (INT) | Id_prof (INT) | Id_gommette (INT) | Date (VARCHAR 100) | Behavior (VACHAR 10_000)                |
+  |-----------------------+------------------+---------------+-------------------+--------------------+-----------------------------------------|
+  |                     1 |                1 |             1 |                 2 |         2022-02-09 | Jette de la nourriture sur son camarade |
+  |                     2 |                2 |             1 |                 1 |         2022-06-07 | A fait tous ces devoirs sans erreurs    |
+  |                     2 |                3 |             1 |                 3 |         2022-04-07 | Aide son camarade à faire ces lacets    |
+
+
+  La date est en format VARCHAR. En effet, nous avons un formulaire HTML avec comme type une "date" afin de faciliter la saisie de date pour l'utilisateur grâce à l'apartirion d'un "calendrier dynamique". Cette date est en réalité une chaîne de caractère, ce qui nous arrange bien afin de la stockée dans la base de donnée.
+* Technologies utilisées
+  #+begin_quote
+  Quelles solutions technologiques envisagez-vous ?
+  #+end_quote
+
+* Routes
+** login
+*** login
+    
+    #+begin_quote
+    GET "http://localhost:8081/login"
+    #+end_quote
+
+    Page de connexion qui sert aussi de page principale au site.
+
+    #+begin_quote
+    POST "http://localhost:8081/login"
+    #+end_quote
+
+    Méthode de vérification des identifiants du professeur, renvoie sur l'ent du professeur en cas 
+    de succes.
+
+*** logout
+
+    #+begin_quote
+    GET "http://localhost:8081/logout"
+    #+end_quote
+
+    Méthode de déconnexion, redirige sur le login après la suppression de la session
+    et du cookie de connexion.
+
+** eleves
+
+   #+begin_quote
+   GET "http://localhost:8081/eleves"
+   #+end_quote
+
+   Affiche la liste des élèves avec leur gommette attribuées.
+
+*** eleve
+
+    #+begin_quote
+    GET "http://localhost:8081/eleves/:id"
+    #+end_quote    
+
+    Affiche la page de profil de l'élève (nom, prénom, liste des gommettes attribuées).
+
+*** create
+
+    #+begin_quote
+    GET "http://localhost:8081/eleves/create"
+    #+end_quote    
+
+    Affiche la page de création d'un élève (formulaire).
+
+    #+begin_quote
+    POST "http://localhost:8081/eleves/create"
+    #+end_quote    
+
+    Création de l'élève dans la bdd. Un élève est représenté par son nom et son prénom.
+
+*** delete
+
+    #+begin_quote
+    GET "http://localhost:8081/eleves/delete:id"
+    #+end_quote    
+
+    Méthode de suppression d'un élève dont l'id dans l'uri correspond à l'id de l'élève dans la bdd.
+    redirige vers la liste d'élèves.
+
+*** modify
+    
+    #+begin_quote
+    GET "http://localhost:8081/eleves/modify/:id"
+    #+end_quote    
+
+    Méthode de suppression d'un élève dont l'id dans l'uri correspond à l'id de l'élève dans la bdd.
+
+    #+begin_quote
+    POST "http://localhost:8081/eleves/modify/:id"
+    #+end_quote    
+
+    Modification de l'élève dans la bdd. L'id est spécifié dans l'uri.
+
+** professeurs
+*** professeur
+
+    #+begin_quote
+    GET "http://localhost:8081/professeurs/:id"
+    #+end_quote    
+
+    Affiche la page personnelle du professeur. Elle sert de page d'accueil et d'ent au professeur.
+    Elle possède les interaction de base telle que création d'un élève, création d'une gommette,
+    attribution d'une gommette à un élève.
+
+*** create
+
+    #+begin_quote
+    GET "http://localhost:8081/professeurs/create"
+    #+end_quote    
+
+    Affiche la page de création d'un professeur. Un professeur est représenté par : nom, prénom, nom d'utilisateur, mot de passe.
+
+    #+begin_quote
+    POST "http://localhost:8081/professeurs/create"
+    #+end_quote    
+
+    Création du professeur dans la bdd.
+
+*** delete
+
+    #+begin_quote
+    GET "http://localhost:8081/professeurs/delete/:id"
+    #+end_quote    
+
+    Création d'un professeur en bdd.
+
+** gommettes
+
+    #+begin_quote
+    GET "http://localhost:8081/gommettes"
+    #+end_quote    
+
+    Affiche la page de la liste des gommettes.
+
+*** create
+
+    #+begin_quote
+    GET "http://localhost:8081/gommettes/create"
+    #+end_quote    
+
+    Affiche la page de création des gommettes.
+
+    #+begin_quote
+    POST "http://localhost:8081/gommettes/create"
+    #+end_quote
+
+    Création de la gommette en bdd.
+
+*** delete
+
+    #+begin_quote
+    GET "http://localhost:8081/gommettes/delete:id"
+    #+end_quote
+
+    Méthode de suppression de la gommette, redirige vers la page de la liste des gommettes.
+
+*** modify
+
+    #+begin_quote
+    GET "http://localhost:8081/gommettes/modify/:id"
+    #+end_quote
+
+    Méthode de suppression d'une gommette dont l'id dans l'uri correspond à l'id de la gommette dans la bdd.
+
+    #+begin_quote
+    POST "http://localhost:8081/eleves/modify/:id"
+    #+end_quote    
+
+    Modification de la gommette dans la bdd. L'id est spécifié dans l'uri.
+
+*** attribuees
+**** create
+
+     #+begin_quote
+     GET "http://localhost:8081/gommettes/attribuees/create/:id"
+     #+end_quote    
+
+     Affiche la page d'attribution d'une gommette pour l'élève dont l'id est spécifiée dans l'uri.
+
+     #+begin_quote
+     POST "http://localhost:8081/gommettes/attribuees/create/:id"
+     #+end_quote
+
+     Création de la gommette attribuee en bdd.
+
+**** delete
+
+    #+begin_quote
+    GET "http://localhost:8081/gommettes/attribuees/delete/:id"
+    #+end_quote
+
+    Méthode de suppression de la gommette_attribuee, l'id correspond à celui de l'élève à qui 
+    la gommette a été attribuée.
+
+  #+LATEX: \newpage
+  #+LATEX: \listoffigures

@@ -1,7 +1,6 @@
 package com.uca.gui;
 
 import com.uca.core.EleveCore;
-import com.uca.entity.EleveEntity;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -15,14 +14,14 @@ import java.util.Map;
 
 public class EleveGUI {
 
-    public static String getAllUsers(boolean userLog, int userId) throws IOException, TemplateException {
+    public static String getAllEleves(boolean userLog, int userId) throws IOException, TemplateException {
         Configuration configuration = _FreeMarkerInitializer.getContext();
 
         Map<String, Object> input = new HashMap<>();
 
 	input.put("userLog", userLog);
 	input.put("userId", userId);
-	input.put("eleves", EleveCore.getAllUsers());
+	input.put("eleves", EleveCore.getAllEleves());
 
         Writer output = new StringWriter();
         Template template = configuration.getTemplate("eleves/eleves.ftl");
@@ -32,12 +31,12 @@ public class EleveGUI {
         return output.toString();
     }
 
-    public static String getUserById(int id, boolean userLog) throws IOException, TemplateException {
+    public static String getEleveById(int id, boolean userLog) throws IOException, TemplateException {
         Configuration configuration = _FreeMarkerInitializer.getContext();
 
         Map<String, Object> input = new HashMap<>();
 
-        input.put("eleve", EleveCore.getUserById(id));
+        input.put("eleve", EleveCore.getEleveById(id));
 	input.put("userLog", userLog);
 
         Writer output = new StringWriter();
@@ -53,7 +52,7 @@ public class EleveGUI {
 
         Map<String, Object> input = new HashMap<>();
 
-        input.put("eleve", EleveCore.getUserById(id));
+        input.put("eleve", EleveCore.getEleveById(id));
 	input.put("userLog", userLog);
 	input.put("log", log);
 

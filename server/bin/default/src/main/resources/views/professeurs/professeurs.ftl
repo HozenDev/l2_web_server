@@ -1,22 +1,30 @@
-<#ftl encoding="utf-8">
+<!DOCTYPE html>
 <head>
-  <style type="text/css">  
-  <#include "../style/reset.css">
-  </style>
+  <link rel='stylesheet' href='/reset.css'>
+  <link rel='stylesheet' href='/ent.css'>
+  <link rel='stylesheet' href='/header.css'>
 </head>
-<body xmlns="http://www.w3.org/1999/html">
-
-<ul>
-    <#list professeurs as professeur>
-        <li> ID:${professeur.getId()} | ${professeur.getFirstName()} ${professeur.getLastName()}</li>
-	<ul>
-	    <#list professeur.getAllGommettes() as p_lg>
-		<li> ${p_lg} </li>
+<body>
+      <div class="info">
+         <ul>
+	    <li>
+	        <h1> Liste des professeurs </h1>
+	    </li>
+	    <#list professeurs as professeur>
+	    <li class="list">
+	    	  <div class="list_head">
+		  <h2> ${professeur.getLastName()} ${professeur.getFirstName()} </h2>
+		  </div>
+	    	  <ul>
+		    <#list professeur.getAllGommettes() as gom>
+	    	      <li>
+			<p> ${gom} </p>
+		      </li>
+	    	    </#list>
+	         </ul>
+	    </li>
 	    </#list>
-	</ul>
-    </#list>
-</ul>
-
+	 </ul>
+      </div>
 </body>
-
 </html>

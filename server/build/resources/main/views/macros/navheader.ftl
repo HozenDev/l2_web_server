@@ -20,6 +20,11 @@
 	    <li>
 		<a href="/gommettes"> Liste des gommettes </a>
             </li>
+	    <#if (userIsLog)!false>
+	    <li>
+	    	<a href="/professeurs"> Liste des professeurs </a>
+	    </li>
+	    </#if>
         </ul>
     </nav>
 </header>

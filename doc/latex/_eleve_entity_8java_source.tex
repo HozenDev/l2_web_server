@@ -1,0 +1,89 @@
+\hypertarget{_eleve_entity_8java_source}{}\doxysubsection{Eleve\+Entity.\+java}
+\label{_eleve_entity_8java_source}\index{EleveEntity.java@{EleveEntity.java}}
+\mbox{\hyperlink{_eleve_entity_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00001}\mbox{\hyperlink{namespacecom_1_1uca_1_1entity}{00001}} \textcolor{keyword}{package }com.uca.entity;}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00003}00003 \textcolor{keyword}{import} com.uca.entity.*;}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00004}00004 \textcolor{keyword}{import} com.uca.dao.\_Connector;}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00005}00005 \textcolor{keyword}{import} java.sql.*;}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00006}00006 \textcolor{keyword}{import} java.util.ArrayList;}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00007}00007 }
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00008}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity}{00008}} \textcolor{keyword}{public} \textcolor{keyword}{class }\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity}{EleveEntity}} \{}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00009}00009 }
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00010}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_a120e2c44c0c1968322610cdd29a0bc78}{00010}}     \textcolor{keyword}{private} ArrayList<GommetteAttribueeEntity> \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_a120e2c44c0c1968322610cdd29a0bc78}{listGommettes}};}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00011}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_aab4f61eceaf92d4d0ad12f0803836e8b}{00011}}     \textcolor{keyword}{private} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_aab4f61eceaf92d4d0ad12f0803836e8b}{id}};}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00012}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_a8f18cfe3bad380865cb7f33db21d12b3}{00012}}     \textcolor{keyword}{private} String \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_a8f18cfe3bad380865cb7f33db21d12b3}{lastName}};}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00013}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_aed45b93cdec2080ae8cfc741a52ec974}{00013}}     \textcolor{keyword}{private} String \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_aed45b93cdec2080ae8cfc741a52ec974}{firstName}};}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00014}00014     }
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00015}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_a623fb8b81c0ab991d06bc101dd148a79}{00015}}     \textcolor{keyword}{public} \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_a623fb8b81c0ab991d06bc101dd148a79}{EleveEntity}}() \{}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00016}00016     this.listGommettes = \textcolor{keyword}{new} ArrayList<>();}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00017}00017     \}}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00019}00019     \textcolor{comment}{// Getters //}}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00020}00020 }
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00021}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_a01f23bcf72b42169e3aebc246faea68f}{00021}}     \textcolor{keyword}{public} ArrayList<GommetteAttribueeEntity> \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_a01f23bcf72b42169e3aebc246faea68f}{getAllGommettes}}() \{}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00022}00022     \textcolor{keywordflow}{return} this.\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_a120e2c44c0c1968322610cdd29a0bc78}{listGommettes}};}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00023}00023     \}}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00024}00024 }
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00025}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_a7dae61525c792fe00549f73eb3ed566b}{00025}}     \textcolor{keyword}{public} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_a7dae61525c792fe00549f73eb3ed566b}{getId}}() \{}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00026}00026     \textcolor{keywordflow}{return} this.\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_aab4f61eceaf92d4d0ad12f0803836e8b}{id}};}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00027}00027     \}}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00028}00028 }
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00029}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_a7d9a2dd6279f10e7aec1d60777573565}{00029}}     \textcolor{keyword}{public} String \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_a7d9a2dd6279f10e7aec1d60777573565}{getLastName}}() \{}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00030}00030     \textcolor{keywordflow}{return} this.\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_a8f18cfe3bad380865cb7f33db21d12b3}{lastName}};}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00031}00031     \}}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00032}00032 }
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00033}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_a199373038a33251a723fba6fe8aa6d78}{00033}}     \textcolor{keyword}{public} String \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_a199373038a33251a723fba6fe8aa6d78}{getFirstName}}() \{}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00034}00034     \textcolor{keywordflow}{return} this.\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_aed45b93cdec2080ae8cfc741a52ec974}{firstName}};}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00035}00035     \}}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00036}00036 }
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00037}00037     \textcolor{comment}{// Setters //}}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00038}00038 }
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00039}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_ae868c4af7fcf07944352caa2f39f2fb2}{00039}}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_ae868c4af7fcf07944352caa2f39f2fb2}{initGommette}}() \{}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00040}00040     Connection connect = \_Connector.getInstance();}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00041}00041     PreparedStatement statement;}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00042}00042     }
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00043}00043     \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00044}00044         statement =}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00045}00045         connect.prepareStatement(\textcolor{stringliteral}{"{}SELECT * FROM gommettesAttribuees WHERE id\_student = ?;"{}});}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00046}00046         statement.setInt(1, this.\textcolor{keywordtype}{id});   }
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00047}00047         ResultSet resultSet = statement.executeQuery(); }
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00049}00049         \textcolor{keywordflow}{while} (resultSet.next()) \{}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00050}00050         \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_gommette_attribuee_entity}{GommetteAttribueeEntity}} entity = \textcolor{keyword}{new} \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_gommette_attribuee_entity}{GommetteAttribueeEntity}}();}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00051}00051         entity.\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_gommette_attribuee_entity_a6f3067aefb7857b5998e5511ba3133bb}{setId}}(resultSet.getInt(\textcolor{stringliteral}{"{}id"{}}));}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00052}00052         entity.\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_gommette_attribuee_entity_a389c95e3da89354ef19c4fd5048b0e2f}{setIdStudent}}(resultSet.getInt(\textcolor{stringliteral}{"{}id\_student"{}}));}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00053}00053         entity.\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_gommette_attribuee_entity_a219a5e7d31f74e98872033a2ef7e00d6}{setIdProf}}(resultSet.getInt(\textcolor{stringliteral}{"{}id\_prof"{}}));}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00054}00054         entity.\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_gommette_attribuee_entity_a1ad7c6173f1f74ff8f61b65950fd8514}{setIdGommette}}(resultSet.getInt(\textcolor{stringliteral}{"{}id\_gommette"{}}));}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00055}00055         entity.\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_gommette_attribuee_entity_acf3c2cc8d1d1b015066ce565139943be}{setDate}}(resultSet.getString(\textcolor{stringliteral}{"{}date"{}}));}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00056}00056         entity.\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_gommette_attribuee_entity_a7d00693a56ad6f5eac551bc2deba8738}{setBehavior}}(resultSet.getString(\textcolor{stringliteral}{"{}behavior"{}}));}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00057}00057 }
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00058}00058         this.listGommettes.add(entity);}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00059}00059         \}}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00060}00060     \}}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00061}00061     \textcolor{keywordflow}{catch} (Exception e) \{}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00062}00062         System.out.println(e.toString());}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00063}00063         \textcolor{keywordflow}{throw} \textcolor{keyword}{new} RuntimeException(\textcolor{stringliteral}{"{}could not recup data student"{}});}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00064}00064     \}}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00065}00065     \}    }
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00066}00066 }
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00067}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_a159b65b05a22c3c6a980e8025da08a6e}{00067}}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_a159b65b05a22c3c6a980e8025da08a6e}{setLastName}}(String \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_a8f18cfe3bad380865cb7f33db21d12b3}{lastName}}) \{}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00068}00068     this.lastName = \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_a8f18cfe3bad380865cb7f33db21d12b3}{lastName}};}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00069}00069     \}}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00070}00070 }
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00071}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_a116a0636016742907835dbab274b9a78}{00071}}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_a116a0636016742907835dbab274b9a78}{setFirstName}}(String \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_aed45b93cdec2080ae8cfc741a52ec974}{firstName}}) \{}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00072}00072     this.firstName = \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_aed45b93cdec2080ae8cfc741a52ec974}{firstName}};}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00073}00073     \}}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00074}00074 }
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00075}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_a38ce02d89a8513a1f53659211f275a8a}{00075}}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_a38ce02d89a8513a1f53659211f275a8a}{setId}}(\textcolor{keywordtype}{int} \textcolor{keywordtype}{id}) \{}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00076}00076     this.\textcolor{keywordtype}{id} = \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_aab4f61eceaf92d4d0ad12f0803836e8b}{id}};}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00077}00077     \}}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00078}00078 }
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00079}00079     @Override}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00080}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_a9b28ad2d28d433fcac3ddeae1aad8300}{00080}}     \textcolor{keyword}{public} String \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_eleve_entity_a9b28ad2d28d433fcac3ddeae1aad8300}{toString}}() \{}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00081}00081     \textcolor{keywordflow}{return} String.format(\textcolor{stringliteral}{"{}\%s \%s"{}}, this.lastName, this.firstName);}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00082}00082     \}}
+\DoxyCodeLine{\Hypertarget{_eleve_entity_8java_source_l00083}00083 \}}
+
+\end{DoxyCode}

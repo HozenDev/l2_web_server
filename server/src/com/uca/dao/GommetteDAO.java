@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class GommetteDAO extends _Generic<GommetteEntity> {
 
-    public ArrayList<GommetteEntity> getAllUsers() {
+    public ArrayList<GommetteEntity> getAllGommettes() {
         ArrayList<GommetteEntity> entities = new ArrayList<>();
         try {
             PreparedStatement preparedStatement = this.connect.prepareStatement("SELECT * FROM gommettes ORDER BY id ASC;");
@@ -27,7 +27,7 @@ public class GommetteDAO extends _Generic<GommetteEntity> {
         return entities;
     }
 
-    public GommetteEntity getUserById(int id) {
+    public GommetteEntity getGommetteById(int id) {
         GommetteEntity entity = new GommetteEntity();
         try {
             PreparedStatement preparedStatement =

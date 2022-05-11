@@ -19,6 +19,15 @@ public class StartServer {
 
 	//** Personnales routes **//
 
+	get("/", (req, res) -> {
+		if (LoginCore.isUserLog(req)) {
+		    res.redirect("/professeurs/"+req.cookie("user_id"));
+		    return null;
+		}
+		res.redirect("/login");
+		return null;
+	    });
+	
 	get("/login", (req, res) -> {
 		int id = 0;
 		if (LoginCore.isUserLog(req)) {
@@ -59,7 +68,7 @@ public class StartServer {
 		if (LoginCore.isUserLog(req)) {
 		    id = Integer.parseInt(req.cookie("user_id"));
 		}
-		return EleveGUI.getAllUsers(LoginCore.isUserLog(req),
+		return EleveGUI.getAllEleves(LoginCore.isUserLog(req),
 					    id);
 	    });
 
@@ -84,7 +93,6 @@ public class StartServer {
 		obj.setLastName(req.queryParams("lastname"));
 		obj.setFirstName(req.queryParams("firstname"));
 		EleveCore.create(obj);
-		res.redirect("/eleves/create");
 		return EleveGUI.create("L'élève a été créé.");
 	    });
 
@@ -146,7 +154,7 @@ public class StartServer {
 		    res.redirect("/eleves");
 		    return null;
 		}
-		return EleveGUI.getUserById(Integer.parseInt(req.params(":id")),
+		return EleveGUI.getEleveById(Integer.parseInt(req.params(":id")),
 					    LoginCore.isUserLog(req));
 	    });
 
@@ -157,7 +165,7 @@ public class StartServer {
 		    res.redirect("/login");
 		    return null;
 		}
-		return ProfesseurGUI.getAllUsers();
+		return ProfesseurGUI.getAllProfesseurs();
 	    });
 	
 	get("/professeurs/create", (req, res) -> {
@@ -208,7 +216,7 @@ public class StartServer {
 		if (Integer.parseInt(req.params(":id")) != Integer.parseInt(req.cookie("user_id"))) {
 		    halt(401, "<h2> 401 Unauthorized </h2>");
 		}
-		return ProfesseurGUI.getUserById(Integer.parseInt(req.params(":id")), LoginCore.isUserLog(req));
+		return ProfesseurGUI.getProfesseurById(Integer.parseInt(req.params(":id")), LoginCore.isUserLog(req));
 	    });
 
 	//* Gommettes routes *//
@@ -218,8 +226,8 @@ public class StartServer {
 		if (LoginCore.isUserLog(req)) {
 		    id = Integer.parseInt(req.cookie("user_id"));
 		}
-		return GommetteGUI.getAllUsers(LoginCore.isUserLog(req),
-					       id);
+		return GommetteGUI.getAllGommettes(LoginCore.isUserLog(req),
+						   id);
 	    });
 
 	get("/gommettes/create", (req, res) -> {
@@ -300,10 +308,6 @@ public class StartServer {
 	    });	
 
 	//* Gommettes Attribuees routes *//
-
-        get("/gommettes/attribuees", (req, res) -> {
-		return GommetteAttribueeGUI.getAllUsers();
-	    });
 	
 	get("/gommettes/attribuees/create/:id", (req, res) -> {
 		if (!LoginCore.isUserLog(req)) {

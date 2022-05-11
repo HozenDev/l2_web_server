@@ -1,0 +1,128 @@
+\hypertarget{_user_entity_8java_source}{}\doxysubsection{User\+Entity.\+java}
+\label{_user_entity_8java_source}\index{UserEntity.java@{UserEntity.java}}
+\mbox{\hyperlink{_user_entity_8java}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00001}00001 \textcolor{keyword}{package }com.uca.entity;}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00002}00002 }
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00003}00003 \textcolor{keyword}{import} com.uca.dao.\_Connector;}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00004}00004 \textcolor{keyword}{import} java.sql.*;}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00005}00005 }
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00006}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity}{00006}} \textcolor{keyword}{public} \textcolor{keyword}{class }\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity}{UserEntity}} \{}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00007}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_ae42f6184b9886008420c4f6b068a09fc}{00007}}     \textcolor{keyword}{private} String \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_ae42f6184b9886008420c4f6b068a09fc}{firstName}};}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00008}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a8a287f557127541c8b5d49a396b8583f}{00008}}     \textcolor{keyword}{private} String \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a8a287f557127541c8b5d49a396b8583f}{lastName}};}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00009}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a7d88b083d7c7277dcf1f84afe88da88c}{00009}}     \textcolor{keyword}{private} String \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a7d88b083d7c7277dcf1f84afe88da88c}{password}};}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00010}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_acfc48127520c5377455976d077275b24}{00010}}     \textcolor{keyword}{private} String \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_acfc48127520c5377455976d077275b24}{username}};}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00011}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_ab67244d2175a24b2823a7b026d152cd6}{00011}}     \textcolor{keyword}{private} String \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_ab67244d2175a24b2823a7b026d152cd6}{statut}};}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00012}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a3d9f27586fbbeaf19a83cbb534e5c5f6}{00012}}     \textcolor{keyword}{private} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a3d9f27586fbbeaf19a83cbb534e5c5f6}{id}};}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00013}00013 }
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00014}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a4f8beab0b4f6284f1370da45cca70c86}{00014}}     \textcolor{keyword}{public} \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a4f8beab0b4f6284f1370da45cca70c86}{UserEntity}}() \{}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00015}00015         \textcolor{comment}{//Ignored !}}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00016}00016     \}}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00017}00017 }
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00018}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a8ee4ce2c27faa61538eee645d9e6be84}{00018}}     \textcolor{keyword}{public} String \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a8ee4ce2c27faa61538eee645d9e6be84}{getUsername}}() \{}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00019}00019     \textcolor{keywordflow}{return} this.\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_acfc48127520c5377455976d077275b24}{username}};}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00020}00020     \}}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00021}00021 }
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00022}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a55386cb7a07fda910dd34e4151d1cc35}{00022}}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a55386cb7a07fda910dd34e4151d1cc35}{setUsername}}(String \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_acfc48127520c5377455976d077275b24}{username}}) \{}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00023}00023     this.username = \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_acfc48127520c5377455976d077275b24}{username}};}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00024}00024     \}}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00025}00025 }
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00026}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a9c1d4fb3ac4bd44ae47e32577c96525e}{00026}}     \textcolor{keyword}{public} String \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a9c1d4fb3ac4bd44ae47e32577c96525e}{getStatut}}() \{}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00027}00027     \textcolor{keywordflow}{return} this.\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_ab67244d2175a24b2823a7b026d152cd6}{statut}};}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00028}00028     \}}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00029}00029 }
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00030}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_ad7e8ce3ebd2046f5a6bfedd9914c48a5}{00030}}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_ad7e8ce3ebd2046f5a6bfedd9914c48a5}{setStatut}}(String \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_ab67244d2175a24b2823a7b026d152cd6}{statut}}) \{}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00031}00031     this.statut = \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_ab67244d2175a24b2823a7b026d152cd6}{statut}};}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00032}00032     \}}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00033}00033 }
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00034}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a8c8df765eac796513fe301d52b320a66}{00034}}     \textcolor{keyword}{public} String \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a8c8df765eac796513fe301d52b320a66}{getPassword}}() \{}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00035}00035     \textcolor{keywordflow}{return} this.\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a7d88b083d7c7277dcf1f84afe88da88c}{password}};}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00036}00036     \}}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00037}00037 }
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00038}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_aaab78ab1e1d7d0431c0bc11417252af4}{00038}}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_aaab78ab1e1d7d0431c0bc11417252af4}{setPassword}}(String \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a7d88b083d7c7277dcf1f84afe88da88c}{password}}) \{}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00039}00039     this.password = \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a7d88b083d7c7277dcf1f84afe88da88c}{password}};}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00040}00040     \}}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00041}00041 }
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00042}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a526b6ca62f094fcbb62137471ed86c4e}{00042}}     \textcolor{keyword}{public} \textcolor{keywordtype}{int} \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a526b6ca62f094fcbb62137471ed86c4e}{getId}}() \{}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00043}00043         \textcolor{keywordflow}{return} \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a3d9f27586fbbeaf19a83cbb534e5c5f6}{id}};}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00044}00044     \}}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00046}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a11cdd211b210668659e54b99bfa32184}{00046}}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a11cdd211b210668659e54b99bfa32184}{setId}}(\textcolor{keywordtype}{int} \textcolor{keywordtype}{id}) \{}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00047}00047         this.\textcolor{keywordtype}{id} = \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a3d9f27586fbbeaf19a83cbb534e5c5f6}{id}};}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00048}00048     \}}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00049}00049 }
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00050}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a6e33768b051ad668210360c67fab0e48}{00050}}     \textcolor{keyword}{public} String \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a6e33768b051ad668210360c67fab0e48}{getFirstName}}() \{}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00051}00051         \textcolor{keywordflow}{return} \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_ae42f6184b9886008420c4f6b068a09fc}{firstName}};}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00052}00052     \}}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00053}00053 }
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00054}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a047c1ae8b3f0e82f650884977a488583}{00054}}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a047c1ae8b3f0e82f650884977a488583}{setFirstName}}(String \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_ae42f6184b9886008420c4f6b068a09fc}{firstName}}) \{}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00055}00055         this.firstName = \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_ae42f6184b9886008420c4f6b068a09fc}{firstName}};}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00056}00056     \}}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00057}00057 }
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00058}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a199b801d6d2541ac6d7a4208773658ec}{00058}}     \textcolor{keyword}{public} String \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a199b801d6d2541ac6d7a4208773658ec}{getLastName}}() \{}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00059}00059         \textcolor{keywordflow}{return} \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a8a287f557127541c8b5d49a396b8583f}{lastName}};}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00060}00060     \}}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00061}00061 }
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00062}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a137c4f5e7128a39990265524641be325}{00062}}     \textcolor{keyword}{public} \textcolor{keywordtype}{void} \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a137c4f5e7128a39990265524641be325}{setLastName}}(String \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a8a287f557127541c8b5d49a396b8583f}{lastName}}) \{}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00063}00063         this.lastName = \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a8a287f557127541c8b5d49a396b8583f}{lastName}};}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00064}00064     \}}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00065}00065 }
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00066}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a76b9c02e1fa14c7357c4bda00606e668}{00066}}     \textcolor{keyword}{public} \textcolor{keyword}{static} \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity}{UserEntity}} \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a76b9c02e1fa14c7357c4bda00606e668}{getLogUser}}(String \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_acfc48127520c5377455976d077275b24}{username}}, String \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a7d88b083d7c7277dcf1f84afe88da88c}{password}}) \{}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00067}00067     \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity}{UserEntity}} entity = \textcolor{keyword}{null};}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00068}00068 }
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00069}00069     Connection connect = \_Connector.getInstance();}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00070}00070     PreparedStatement statement;}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00071}00071     ResultSet resultSet;}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00072}00072 }
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00073}00073     \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00074}00074         statement =}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00075}00075         connect.prepareStatement(\textcolor{stringliteral}{"{}SELECT * FROM users WHERE username = ? AND password = ?;"{}});}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00076}00076         statement.setString(1, \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_acfc48127520c5377455976d077275b24}{username}});}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00077}00077         statement.setString(2, \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a7d88b083d7c7277dcf1f84afe88da88c}{password}});}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00078}00078         resultSet = statement.executeQuery();}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00079}00079         \textcolor{keywordflow}{if} (resultSet.next()) \{}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00080}00080         entity = \textcolor{keyword}{new} \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a4f8beab0b4f6284f1370da45cca70c86}{UserEntity}}();}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00081}00081         entity.\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a11cdd211b210668659e54b99bfa32184}{setId}}(resultSet.getInt(\textcolor{stringliteral}{"{}id"{}}));}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00082}00082                 entity.\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a047c1ae8b3f0e82f650884977a488583}{setFirstName}}(resultSet.getString(\textcolor{stringliteral}{"{}firstname"{}}));}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00083}00083                 entity.\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a137c4f5e7128a39990265524641be325}{setLastName}}(resultSet.getString(\textcolor{stringliteral}{"{}lastname"{}}));}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00084}00084         entity.\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a55386cb7a07fda910dd34e4151d1cc35}{setUsername}}(resultSet.getString(\textcolor{stringliteral}{"{}username"{}}));}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00085}00085         entity.\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_aaab78ab1e1d7d0431c0bc11417252af4}{setPassword}}(resultSet.getString(\textcolor{stringliteral}{"{}password"{}}));}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00086}00086         entity.\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_ad7e8ce3ebd2046f5a6bfedd9914c48a5}{setStatut}}(resultSet.getString(\textcolor{stringliteral}{"{}statut"{}}));}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00087}00087         \}}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00088}00088     \}}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00089}00089     \textcolor{keywordflow}{catch} (Exception e) \{}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00090}00090         System.out.println(e.toString());}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00091}00091         \textcolor{keywordflow}{throw} \textcolor{keyword}{new} RuntimeException(\textcolor{stringliteral}{"{}SQL Error: PWD and UN incorrects"{}});}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00092}00092     \}}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00093}00093     \textcolor{keywordflow}{return} entity;}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00094}00094     \}}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00095}00095      }
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00096}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a16f7e67cb7a604ef6af5de76e180da46}{00096}}     \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{boolean} \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a16f7e67cb7a604ef6af5de76e180da46}{validLogin}}(String \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_acfc48127520c5377455976d077275b24}{username}}, String \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a7d88b083d7c7277dcf1f84afe88da88c}{password}}) \{}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00097}00097     \textcolor{keywordtype}{boolean} isvalid = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00098}00098 }
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00099}00099     Connection connect = \_Connector.getInstance();}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00100}00100     PreparedStatement statement;}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00101}00101     ResultSet resultSet;}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00102}00102 }
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00103}00103     \textcolor{keywordflow}{try} \{}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00104}00104         statement =}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00105}00105         connect.prepareStatement(\textcolor{stringliteral}{"{}SELECT * FROM users WHERE username = ? AND password = ?;"{}});}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00106}00106         statement.setString(1, \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_acfc48127520c5377455976d077275b24}{username}});}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00107}00107         statement.setString(2, \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a7d88b083d7c7277dcf1f84afe88da88c}{password}});}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00108}00108         resultSet = statement.executeQuery();}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00109}00109         \textcolor{keywordflow}{if} (resultSet.next()) isvalid = \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00110}00110     \}}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00111}00111     \textcolor{keywordflow}{catch} (Exception e) \{}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00112}00112         System.out.println(e.toString());}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00113}00113         \textcolor{keywordflow}{throw} \textcolor{keyword}{new} RuntimeException(\textcolor{stringliteral}{"{}SQL Error: PWD and UN incorrects"{}});}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00114}00114     \}}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00115}00115     \textcolor{keywordflow}{return} isvalid;}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00116}00116     \}}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00117}00117     }
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00118}00118     @Override}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00119}\mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a809b096ab4b1d9b198f4e3ee02f902eb}{00119}}     \textcolor{keyword}{public} String \mbox{\hyperlink{classcom_1_1uca_1_1entity_1_1_user_entity_a809b096ab4b1d9b198f4e3ee02f902eb}{toString}}() \{}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00120}00120     \textcolor{keywordflow}{return} String.format(\textcolor{stringliteral}{"{}\%s \%s"{}}, this.lastName, this.firstName);}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00121}00121     \}}
+\DoxyCodeLine{\Hypertarget{_user_entity_8java_source_l00122}00122 \}}
+
+\end{DoxyCode}

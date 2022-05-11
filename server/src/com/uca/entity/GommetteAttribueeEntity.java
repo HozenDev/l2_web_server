@@ -66,39 +66,15 @@ public class GommetteAttribueeEntity {
     public void setBehavior(String behavior) {
 	this.behavior = behavior;
     }
-    
-    @Override
-    public String toString() {
 
+    public String getColor() {
 	Connection connect = _Connector.getInstance();
 	PreparedStatement statement;
 	ResultSet resultSet;
-	
-	String prof_lastname = "";
-	String prof_firstname = "";
-	String eleve_lastname = "";
-	String eleve_firstname = "";
+
 	String gommette_color = "";
-
+	
 	try {
-	    statement =
-		connect.prepareStatement("SELECT lastname, firstname FROM professeurs WHERE id = ?;");
-	    statement.setInt(1, this.idProf);
-	    resultSet = statement.executeQuery();
-	    resultSet.next();
-	    
-	    prof_lastname = resultSet.getString("lastname");
-	    prof_firstname = resultSet.getString("firstname");	    
-
-	    statement =
-		connect.prepareStatement("SELECT lastname, firstname FROM eleves WHERE id = ?;");
-	    statement.setInt(1, this.idStudent);
-	    resultSet = statement.executeQuery();
-	    resultSet.next();
-	    
-	    eleve_lastname = resultSet.getString("lastname");
-	    eleve_firstname = resultSet.getString("firstname");
-
 	    statement =
 		connect.prepareStatement("SELECT color FROM gommettes WHERE id = ?;");
 	    statement.setInt(1, this.idGommette);
@@ -111,7 +87,70 @@ public class GommetteAttribueeEntity {
 	    System.out.println(e.toString());
 	    throw new RuntimeException("SQL Error: could not recup gommettesAttribuees datas");
 	}
+	return gommette_color;
+    }
+
+    public String getEleveNames() {
+	Connection connect = _Connector.getInstance();
+	PreparedStatement statement;
+	ResultSet resultSet;
+
+	String eleve_firstname = "";
+	String eleve_lastname = "";
+	
+	try {
+	    statement =
+		connect.prepareStatement("SELECT lastname, firstname FROM eleves WHERE id = ?;");
+	    statement.setInt(1, this.idStudent);
+	    resultSet = statement.executeQuery();
+	    resultSet.next();
 	    
-	return String.format("Le professeur %s %s a mis la gommette %s à l'élève %s %s, le %s pour motif : '%s'.", prof_lastname, prof_firstname, gommette_color, eleve_lastname, eleve_firstname, date, behavior);
-    }    
+	    eleve_lastname = resultSet.getString("lastname");
+	    eleve_firstname = resultSet.getString("firstname");
+	}
+	catch (Exception e) {
+	    System.out.println(e.toString());
+	    throw new RuntimeException("SQL Error: could not recup gommettesAttribuees datas");
+	}
+	return eleve_lastname + " " + eleve_firstname;
+    }
+
+    
+    public String getProfNames() {
+	Connection connect = _Connector.getInstance();
+	PreparedStatement statement;
+	ResultSet resultSet;
+
+	String prof_firstname = "";
+	String prof_lastname = "";
+	
+	try {
+	    statement =
+		connect.prepareStatement("SELECT lastname, firstname FROM professeurs WHERE id = ?;");
+	    statement.setInt(1, this.idProf);
+	    resultSet = statement.executeQuery();
+	    resultSet.next();
+	    
+	    prof_lastname = resultSet.getString("lastname");
+	    prof_firstname = resultSet.getString("firstname");
+	}
+	catch (Exception e) {
+	    System.out.println(e.toString());
+	    throw new RuntimeException("SQL Error: could not recup gommettesAttribuees datas");
+	}
+	return prof_lastname + " " + prof_firstname;
+    }
+
+    @Override
+    public String toString() {
+	StringBuilder s = new StringBuilder();
+
+	s.append(this.getDate());
+	s.append(" | ");
+	s.append(this.getProfNames());
+	s.append(": ");
+	s.append(this.getBehavior());
+
+	return s.toString();
+    }
 }

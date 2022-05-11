@@ -7,10 +7,6 @@ import java.util.ArrayList;
 
 public class GommetteAttribueeCore {
 
-    public static ArrayList<GommetteAttribueeEntity> getAllUsers() {
-        return new GommetteAttribueeDAO().getAllUsers();
-    }
-
     public static GommetteAttribueeEntity create(GommetteAttribueeEntity obj) {
 	return new GommetteAttribueeDAO().create(obj);
     }

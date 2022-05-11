@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class EleveCore {
 
-    public static ArrayList<EleveEntity> getAllUsers() {
-        return new EleveDAO().getAllUsers();
+    public static ArrayList<EleveEntity> getAllEleves() {
+        return new EleveDAO().getAllEleves();
     }
 
     public static EleveEntity create(EleveEntity obj) {
@@ -19,8 +19,8 @@ public class EleveCore {
 	new EleveDAO().delete(obj);
     }
 
-    public static EleveEntity getUserById(int id) {
-        return new EleveDAO().getUserById(id);
+    public static EleveEntity getEleveById(int id) {
+        return new EleveDAO().getEleveById(id);
     }
 
     public static EleveEntity modify(EleveEntity obj) {

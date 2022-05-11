@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <head>
-  <style type="text/css">  
-  <#include "../style/reset.css">
-  <#include "../style/form.css">
-  </style>
+  <link rel='stylesheet' href='/reset.css'>
+  <link rel='stylesheet' href='/form.css'>
 </head>
 <body>
-  <form method="post" action="/gommettes/modify/${gommette.getId()}">
+  <form method="POST" action="/gommettes/modify/${gommette.getId()}">
     <ul>
       <li>
         <h2> Modification de la gommette </h2>

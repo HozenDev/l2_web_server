@@ -1,28 +1,23 @@
+<#import "../macros/navheader.ftl" as nh>
 <!DOCTYPE html>
 <head>
-  <style type="text/css">  
-  <#include "../style/reset.css">
-  <#include "../style/ent.css">
-  </style>
+<link rel='stylesheet' href='/reset.css'>
+<link rel='stylesheet' href='/ent.css'>
+<link rel='stylesheet' href='/header.css'>
 </head>
 <body>
+  <@nh.navheadbar userIsLog=(userLog)!true id="${userId}"/>
       <div class="info">
          <ul>
 	    <li>
 	        <h1> Liste des gommettes </h1>
 	    </li>
-	    <#if (userLog)!false>	
-	    <li>
-	    	<a href="/gommettes/create">
-	    	    Créer une gommette
-	      	</a>
-	    </li>
-	    </#if>
 	    <#list gommettes as gommette>
 	    <li class="gommette">
-	       <h2>${gommette.getColor()}: ${gommette.getDescription()}</h2>
+	       <h3>${gommette.getColor()}: ${gommette.getDescription()}</h3>
 	       <#if (userLog)!false>
-	       <a href="/gommettes/modify/${gommette.getId()}"> Modifier la gommette </a>
+		 <a href="/gommettes/modify/${gommette.getId()}"> Modifier </a>
+		 <a href="/gommettes/delete/${gommette.getId()}"> Supprimer </a>
 	       </#if>
 	    </li>
 	    </#list>
