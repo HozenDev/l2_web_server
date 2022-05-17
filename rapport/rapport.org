@@ -8,11 +8,11 @@
 # After begin document
 
 #+LATEX: \thispagestyle{fancy}
-
 #+AUTHOR: DUREL Enzo, VILLEPREUX Thibault
 #+EMAIL: enzo.durel@etu.uca.fr, thibault.villepreux@etu.uca.fr
 #+TITLE: Serveur Web
-
+#+OPTIONS: toc:nil
+#+LATEX: \shorttoc{Sommaire}{2}
 #+LATEX: \newpage
 
 * Introduction
@@ -29,15 +29,17 @@
 
   Plus précisément, si le professeur est connecté il peut faire plusieurs actions :
   + ajouter, supprimer ou modifier un élève (son nom et son prénom)
+  + ajouter, supprimer ou modifier une gommette (couleur et description)
   + lister, ajouter ou supprimer une gommette attribuée à un élève. Une gommette attribuée possède une date, un motif et une gommette principale qui elle-même contient une couleur (rouge, vert ou blanc) et une description générale.
-  + créer un nouveau professeur
-  + se déconnecter de sa session
+  + créer ou supprimer un professeur
+  + se connecter/déconnecter de sa session
 
   En revanche tout le monde a accès à la liste des gommettes configurées et la liste des gommettes de chaque élève, avec possibilité de voir le professeur ayant mis la gommette.
 
 * Principales classes
 
   #+caption: UML des entités
+  #+ATTR_LATEX: :float nil
   [[./uml.png]]
 
   Image disponible [[./uml.png][ici]] (./web-server/rapport/uml.png)
@@ -52,50 +54,130 @@
   Quelles vont être les tables de votre base de données ?
   #+end_quote
 
+  #+caption: UML de la Base De Données
+  #+ATTR_LATEX: :float nil :width 0.7\textwidth
+  [[./uml-bdd.png]]
+
   Chaque classe principale possède une table dans la base de donnée relationnelle. 
 
-  La table "PROFESSEURS" comme son nom l'indique représente la classe ProfesseurEntity, voici sa représentation avec quelques exemples :
+  La table "PROFESSEURS" comme son nom l'indique représente la classe ProfesseurEntity,
+  voici sa représentation avec quelques exemples :
 
+  #+caption: Table PROFESSEURS
+  #+ATTR_LATEX: :width 50px :align |c|c|c| :float nil
+  |------------------------+-------------------------+------------------------|
+  | Id (INT, primary key)  | Firstname (VARCHAR 100) | Lastname (VARCHAR 100) |
+  |------------------------+-------------------------+------------------------|
+  | 1                      | Paul                    | Boulanger              |
+  | 2                      | Jules                   | Verne                  |
+  | 3                      | Georges                 | Lefou                  |
+  |------------------------+-------------------------+------------------------|
+  | Username (VARCHAR 100) | Password (VARCHAR 100)  |                        |
+  |------------------------+-------------------------+------------------------|
+  | paboulanger            | 1234                    |                        |
+  | juverne                | azerty1234              |                        |
+  | gelefou                | password                |                        |
+  |------------------------+-------------------------+------------------------|
 
-  | Id (INT, primary key) | Firstname ( VARCHAR 100) | Lastname (VARCHAR 100) | Usrename (VARCHAR  100) | Password (VARCHAR 100) |
-  |-----------------------+--------------------------+------------------------+-------------------------+------------------------|
-  |                     1 | Paul                     | Boulanger              | paboulanger             | password               |
-  |                     2 | Jules                    | Verne                  | juverne                 | azerty1234             |
-  |                     3 | Georges                  | Lefou                  | gelefou                 | 123456789              |
+  La table "ELEVES" comme son nom l'indique représente la classe EleveEntity,
+  voici sa représentation avec quelques exemples :
 
-
-  La table "ELEVES" comme son nom l'indique représente la classe EleveEntity, voici sa représentation avec quelques exemples :
-
+  #+caption: Table ELEVES
+  #+ATTR_LATEX: :width 50px :align |c|c|c| :float nil
+  |-----------------------+--------------------------+------------------------|
   | Id (INT, primary key) | Firstname ( VARCHAR 100) | Lastname (VARCHAR 100) |
   |-----------------------+--------------------------+------------------------|
   |                     1 | Jean                     | Valjean                |
   |                     2 | Thomas                   | Ducarquoi              |
   |                     3 | Timothée                 | Louis                  |
+  |-----------------------+--------------------------+------------------------|
 
+  La table "GOMMETTES" comme son nom l'indique représente la classe GommetteEntity,
+  voici sa représentation avec quelques exemples :
 
-  La table "GOMMETTES" comme son nom l'indique représente la classe GommetteEntity, voici sa représentation avec quelques exemples :
-
+  #+caption: Table GOMMETTES
+  #+ATTR_LATEX: :width 50px :align |c|c|c| :float nil
+  |-----------------------+--------------------+---------------------------|
   | Id (INT, primary key) | Color (VARCHAR 50) | Description (VARCHAR 100) |
   |-----------------------+--------------------+---------------------------|
   |                     1 | Rouge              | Bavardage                 |
   |                     2 | Vert               | Excellente note           |
   |                     3 | Blanc              | Nettoie les toilettes     |
+  |-----------------------+--------------------+---------------------------|
 
+  La table "GOMMETTESATTRIBUEES" comme son nom l'indique représente la classe
+  GommetteAttribueeEntity, voici sa représentation avec quelques exemples:
 
-  La table "GOMMETTESATTRIBUEES" comme son nom l'indique représente la classe GommetteAttribueeEntity, voici sa représentation avec quelques exemples :
+  #+caption: Table GOMMETTESATTRIBUEES
+  #+ATTR_LATEX: :width 50px :align |c|c|c| :float nil
+  |-----------------------+--------------------+----------------------------------------|
+  | Id (INT, primary key) |   Id_student (INT) | Id_prof (INT)                          |
+  |-----------------------+--------------------+----------------------------------------|
+  |                     1 |                  1 | 1                                      |
+  |                     2 |                  2 | 1                                      |
+  |                     3 |                  2 | 1                                      |
+  |-----------------------+--------------------+----------------------------------------|
+  |     Id_gommette (INT) | Date (VARCHAR 100) | Behavior (VACHAR 10,000)               |
+  |-----------------------+--------------------+----------------------------------------|
+  |                     2 |         2022-02-09 | Jette de la nourriture                 |
+  |                     1 |         2022-06-07 | A fait tout ces devoirs sans fautes    |
+  |                     3 |         2022-04-07 | A aidé son camarade a faire ses lacets |
+  |-----------------------+--------------------+----------------------------------------|
 
-  | Id (INT, primary key) | Id_student (INT) | Id_prof (INT) | Id_gommette (INT) | Date (VARCHAR 100) | Behavior (VACHAR 10_000)                |
-  |-----------------------+------------------+---------------+-------------------+--------------------+-----------------------------------------|
-  |                     1 |                1 |             1 |                 2 |         2022-02-09 | Jette de la nourriture sur son camarade |
-  |                     2 |                2 |             1 |                 1 |         2022-06-07 | A fait tous ces devoirs sans erreurs    |
-  |                     2 |                3 |             1 |                 3 |         2022-04-07 | Aide son camarade à faire ces lacets    |
+  La date est en format VARCHAR. En effet, nous avons un formulaire HTML
+  avec comme type une "date" afin de faciliter la saisie de date pour l'utilisateur
+  grâce à l'apartirion d'un "calendrier dynamique". Cette date est en réalité
+  une chaîne de caractère, ce qui nous arrange bien afin de la stockée dans
+  la base de donnée.
 
-
-  La date est en format VARCHAR. En effet, nous avons un formulaire HTML avec comme type une "date" afin de faciliter la saisie de date pour l'utilisateur grâce à l'apartirion d'un "calendrier dynamique". Cette date est en réalité une chaîne de caractère, ce qui nous arrange bien afin de la stockée dans la base de donnée.
 * Technologies utilisées
+
   #+begin_quote
   Quelles solutions technologiques envisagez-vous ?
   #+end_quote
+  
+** Entity
+
+   Les classes Entity correspondent aux représentation logiques de nos données.
+   Elles possède presque uniquement des getters/setters pour faciliter le
+   controle/emploi des instances.
+
+** DAO
+
+   Les classes DAO correspondent aux classes qui gère les ressources, en
+   base de données, en fichiers texte, etc.
+
+*** SQL
+    
+    Nous utilisons dans ce projet une base de données pour gérer les ressources.
+    Elles nous semble beaucoup plus adaptés que des fichiers textes et plus
+    durables dans le temps.
+
+** Core
+
+   La classe Core correspond aux classes de calcul. Elles sont appelées
+   lorsqu'on doit utiliser un processus.
+
+** GUI
+*** Freemarker
+
+    Nous utilisons un système de template pour générer la réponse graphique au client.
+    Pour cela nous utilisons le Freemarker.
+
+** Gestion états client
+*** Cookies
+
+    Nous avons décidé d'utiliser les cookies pour permettre l'authentification
+    de l'utilisateur. Lorsque l'utilisateur se connecte correctement (mot de
+    passe et nom d'utilisateur OK) on donne au client son id sous forme de
+    cookies qui donnera donc à chaque requête.
+
+*** Sessions
+
+    Côté serveur, nous ouvrons une session lors de la connexion du client.
+    Ainsi nous savons si il est connecté ou non à chaque requête.
+
+** Gestion de statuts
 
 * Routes
 ** login
@@ -111,8 +193,8 @@
     POST "http://localhost:8081/login"
     #+end_quote
 
-    Méthode de vérification des identifiants du professeur, renvoie sur l'ent du professeur en cas 
-    de succes.
+    Méthode de vérification des identifiants du professeur, renvoie sur l'ent
+    du professeur en cas de succes.
 
 *** logout
 
@@ -129,7 +211,7 @@
    GET "http://localhost:8081/eleves"
    #+end_quote
 
-   Affiche la liste des élèves avec leur gommette attribuées.
+   Affiche la liste des élèves avec leurs gommettes attribuées.
 
 *** eleve
 
@@ -177,15 +259,23 @@
     Modification de l'élève dans la bdd. L'id est spécifié dans l'uri.
 
 ** professeurs
+
+   #+begin_quote
+   GET "http://localhost:8081/professeurs"
+   #+end_quote
+
+   Affiche la liste des professeurs avec leurs gommettes attribuées.
+
 *** professeur
 
     #+begin_quote
     GET "http://localhost:8081/professeurs/:id"
     #+end_quote    
 
-    Affiche la page personnelle du professeur. Elle sert de page d'accueil et d'ent au professeur.
-    Elle possède les interaction de base telle que création d'un élève, création d'une gommette,
-    attribution d'une gommette à un élève.
+    Affiche la page personnelle du professeur. Elle sert de page d'accueil
+    et d'ent au professeur. Elle possède les interaction de base telle que
+    création d'un élève, création d'une gommette, attribution d'une gommette
+    à un élève.
 
 *** create
 
@@ -193,7 +283,8 @@
     GET "http://localhost:8081/professeurs/create"
     #+end_quote    
 
-    Affiche la page de création d'un professeur. Un professeur est représenté par : nom, prénom, nom d'utilisateur, mot de passe.
+    Affiche la page de création d'un professeur. Un professeur est représenté
+    par : nom, prénom, nom d'utilisateur, mot de passe.
 
     #+begin_quote
     POST "http://localhost:8081/professeurs/create"
@@ -211,11 +302,11 @@
 
 ** gommettes
 
-    #+begin_quote
-    GET "http://localhost:8081/gommettes"
-    #+end_quote    
+   #+begin_quote
+   GET "http://localhost:8081/gommettes"
+   #+end_quote    
 
-    Affiche la page de la liste des gommettes.
+   Affiche la page de la liste des gommettes.
 
 *** create
 
@@ -237,7 +328,8 @@
     GET "http://localhost:8081/gommettes/delete:id"
     #+end_quote
 
-    Méthode de suppression de la gommette, redirige vers la page de la liste des gommettes.
+    Méthode de suppression de la gommette, redirige vers la page de la liste
+    des gommettes.
 
 *** modify
 
@@ -245,7 +337,8 @@
     GET "http://localhost:8081/gommettes/modify/:id"
     #+end_quote
 
-    Méthode de suppression d'une gommette dont l'id dans l'uri correspond à l'id de la gommette dans la bdd.
+    Méthode de suppression d'une gommette dont l'id dans l'uri correspond
+    à l'id de la gommette dans la bdd.
 
     #+begin_quote
     POST "http://localhost:8081/eleves/modify/:id"
@@ -260,7 +353,8 @@
      GET "http://localhost:8081/gommettes/attribuees/create/:id"
      #+end_quote    
 
-     Affiche la page d'attribution d'une gommette pour l'élève dont l'id est spécifiée dans l'uri.
+     Affiche la page d'attribution d'une gommette pour l'élève dont l'id est
+     spécifiée dans l'uri.
 
      #+begin_quote
      POST "http://localhost:8081/gommettes/attribuees/create/:id"
@@ -270,12 +364,18 @@
 
 **** delete
 
-    #+begin_quote
-    GET "http://localhost:8081/gommettes/attribuees/delete/:id"
-    #+end_quote
+     #+begin_quote
+     GET "http://localhost:8081/gommettes/attribuees/delete/:id"
+     #+end_quote
 
-    Méthode de suppression de la gommette_attribuee, l'id correspond à celui de l'élève à qui 
-    la gommette a été attribuée.
+     Méthode de suppression de la gommette attribuee, l'id correspond à celui
+     de l'élève à qui la gommette a été attribuée.
 
+
+
+  #+LATEX: \noindent
   #+LATEX: \newpage
-  #+LATEX: \listoffigures
+  #+TOC: headlines 5
+  #+LATEX: \newpage
+  #+TOC: listings
+  #+TOC: tables

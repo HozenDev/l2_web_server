@@ -92,9 +92,11 @@
 #+LATEX_HEADER: \setlist[itemize]{noitemsep}
 # #+LATEX_HEADER: \setlist{itemsep=-2pt}
 
-% name of ToC
+% ToC
 
-#+LATEX_HEADER: \renewcommand{\contentsname}{Sommaire}
+#+LATEX_HEADER: \renewcommand{\contentsname}{Table des matières}
+#+LATEX_HEADER: \usepackage{shorttoc}
+#+LATEX_HEADER: \setcounter{tocdepth}{5}
 
 % pretty code
 

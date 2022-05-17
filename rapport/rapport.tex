@@ -1,4 +1,4 @@
-% Created 2022-05-11 mer. 10:53
+% Created 2022-05-17 mar. 11:53
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -53,7 +53,9 @@
 \usepackage{enumitem}
 \setlist{noitemsep}
 \setlist[itemize]{noitemsep}
-\renewcommand{\contentsname}{Sommaire}
+\renewcommand{\contentsname}{Table des matières}
+\usepackage{shorttoc}
+\setcounter{tocdepth}{5}
 \usepackage{listings}
 \usepackage{xcolor}
 \usepackage[utf8]{inputenc}
@@ -85,19 +87,17 @@ numbersep=5pt,
 \begin{document}
 
 \maketitle
-\tableofcontents
-
 \thispagestyle{fancy}
-
+\shorttoc{Sommaire}{2}
 \newpage
 
 \section{Introduction}
-\label{sec:org40456fe}
+\label{sec:org419efd4}
 
 Nous avons créé un serveur.
 
 \section{Fonctionnalités importantes}
-\label{sec:orgc280ad7}
+\label{sec:org8cb6a27}
 
 \begin{quote}
 Quelles sont les fonctionnalités qui vous semblent importantes ?
@@ -108,21 +108,21 @@ L'objectif est de créer un dispositif où les élèves peuvent consulter leur c
 Plus précisément, si le professeur est connecté il peut faire plusieurs actions :
 \begin{itemize}
 \item ajouter, supprimer ou modifier un élève (son nom et son prénom)
+\item ajouter, supprimer ou modifier une gommette (couleur et description)
 \item lister, ajouter ou supprimer une gommette attribuée à un élève. Une gommette attribuée possède une date, un motif et une gommette principale qui elle-même contient une couleur (rouge, vert ou blanc) et une description générale.
-\item créer un nouveau professeur
-\item se déconnecter de sa session
+\item créer ou supprimer un professeur
+\item se connecter/déconnecter de sa session
 \end{itemize}
 
 En revanche tout le monde a accès à la liste des gommettes configurées et la liste des gommettes de chaque élève, avec possibilité de voir le professeur ayant mis la gommette.
 
 \section{Principales classes}
-\label{sec:org756013a}
+\label{sec:org777d0c3}
 
-\begin{figure}[htbp]
-\centering
+\begin{center}
 \includegraphics[width=.9\linewidth]{./uml.png}
-\caption{UML des entités}
-\end{figure}
+\captionof{figure}{UML des entités}
+\end{center}
 
 Image disponible \href{./uml.png}{ici} (./web-server/rapport/uml.png)
 
@@ -131,80 +131,167 @@ Quelles vont être les principales classes de votre applications ?
 \end{quote}
 
 \section{Bases de données}
-\label{sec:org80b80d1}
+\label{sec:org7afbb43}
 
 \begin{quote}
 Quelles vont être les tables de votre base de données ?
 \end{quote}
 
+\begin{center}
+\includegraphics[width=0.7\textwidth]{./uml-bdd.png}
+\captionof{figure}{UML de la Base De Données}
+\end{center}
+
 Chaque classe principale possède une table dans la base de donnée relationnelle. 
 
-La table "PROFESSEURS" comme son nom l'indique représente la classe ProfesseurEntity, voici sa représentation avec quelques exemples :
-
+La table "PROFESSEURS" comme son nom l'indique représente la classe ProfesseurEntity,
+voici sa représentation avec quelques exemples :
 
 \begin{center}
-\begin{tabular}{rllll}
-Id (INT, primary key) & Firstname ( VARCHAR 100) & Lastname (VARCHAR 100) & Usrename (VARCHAR  100) & Password (VARCHAR 100)\\
+\captionof{table}{Table PROFESSEURS}
+\begin{tabular}{|c|c|c|}
 \hline
-1 & Paul & Boulanger & paboulanger & password\\
-2 & Jules & Verne & juverne & azerty1234\\
-3 & Georges & Lefou & gelefou & 123456789\\
+Id (INT, primary key) & Firstname (VARCHAR 100) & Lastname (VARCHAR 100)\\
+\hline
+1 & Paul & Boulanger\\
+2 & Jules & Verne\\
+3 & Georges & Lefou\\
+\hline
+Username (VARCHAR 100) & Password (VARCHAR 100) & \\
+\hline
+paboulanger & 1234 & \\
+juverne & azerty1234 & \\
+gelefou & password & \\
+\hline
 \end{tabular}
 \end{center}
 
-
-La table "ELEVES" comme son nom l'indique représente la classe EleveEntity, voici sa représentation avec quelques exemples :
+La table "ELEVES" comme son nom l'indique représente la classe EleveEntity,
+voici sa représentation avec quelques exemples :
 
 \begin{center}
-\begin{tabular}{rll}
+\captionof{table}{Table ELEVES}
+\begin{tabular}{|c|c|c|}
+\hline
 Id (INT, primary key) & Firstname ( VARCHAR 100) & Lastname (VARCHAR 100)\\
 \hline
 1 & Jean & Valjean\\
 2 & Thomas & Ducarquoi\\
 3 & Timothée & Louis\\
+\hline
 \end{tabular}
 \end{center}
 
-
-La table "GOMMETTES" comme son nom l'indique représente la classe GommetteEntity, voici sa représentation avec quelques exemples :
+La table "GOMMETTES" comme son nom l'indique représente la classe GommetteEntity,
+voici sa représentation avec quelques exemples :
 
 \begin{center}
-\begin{tabular}{rll}
+\captionof{table}{Table GOMMETTES}
+\begin{tabular}{|c|c|c|}
+\hline
 Id (INT, primary key) & Color (VARCHAR 50) & Description (VARCHAR 100)\\
 \hline
 1 & Rouge & Bavardage\\
 2 & Vert & Excellente note\\
 3 & Blanc & Nettoie les toilettes\\
+\hline
 \end{tabular}
 \end{center}
 
-
-La table "GOMMETTESATTRIBUEES" comme son nom l'indique représente la classe GommetteAttribueeEntity, voici sa représentation avec quelques exemples :
+La table "GOMMETTESATTRIBUEES" comme son nom l'indique représente la classe
+GommetteAttribueeEntity, voici sa représentation avec quelques exemples:
 
 \begin{center}
-\begin{tabular}{rrrrrl}
-Id (INT, primary key) & Id\textsubscript{student} (INT) & Id\textsubscript{prof} (INT) & Id\textsubscript{gommette} (INT) & Date (VARCHAR 100) & Behavior (VACHAR 10\textsubscript{000})\\
+\captionof{table}{Table GOMMETTESATTRIBUEES}
+\begin{tabular}{|c|c|c|}
 \hline
-1 & 1 & 1 & 2 & 2022-02-09 & Jette de la nourriture sur son camarade\\
-2 & 2 & 1 & 1 & 2022-06-07 & A fait tous ces devoirs sans erreurs\\
-2 & 3 & 1 & 3 & 2022-04-07 & Aide son camarade à faire ces lacets\\
+Id (INT, primary key) & Id\textsubscript{student} (INT) & Id\textsubscript{prof} (INT)\\
+\hline
+1 & 1 & 1\\
+2 & 2 & 1\\
+3 & 2 & 1\\
+\hline
+Id\textsubscript{gommette} (INT) & Date (VARCHAR 100) & Behavior (VACHAR 10,000)\\
+\hline
+2 & 2022-02-09 & Jette de la nourriture\\
+1 & 2022-06-07 & A fait tout ces devoirs sans fautes\\
+3 & 2022-04-07 & A aidé son camarade a faire ses lacets\\
+\hline
 \end{tabular}
 \end{center}
 
+La date est en format VARCHAR. En effet, nous avons un formulaire HTML
+avec comme type une "date" afin de faciliter la saisie de date pour l'utilisateur
+grâce à l'apartirion d'un "calendrier dynamique". Cette date est en réalité
+une chaîne de caractère, ce qui nous arrange bien afin de la stockée dans
+la base de donnée.
 
-La date est en format VARCHAR. En effet, nous avons un formulaire HTML avec comme type une "date" afin de faciliter la saisie de date pour l'utilisateur grâce à l'apartirion d'un "calendrier dynamique". Cette date est en réalité une chaîne de caractère, ce qui nous arrange bien afin de la stockée dans la base de donnée.
 \section{Technologies utilisées}
-\label{sec:org7289004}
+\label{sec:org78f5883}
+
 \begin{quote}
 Quelles solutions technologiques envisagez-vous ?
 \end{quote}
 
+\subsection{Entity}
+\label{sec:orgcc46738}
+
+Les classes Entity correspondent aux représentation logiques de nos données.
+Elles possède presque uniquement des getters/setters pour faciliter le
+controle/emploi des instances.
+
+\subsection{DAO}
+\label{sec:org239c0a1}
+
+Les classes DAO correspondent aux classes qui gère les ressources, en
+base de données, en fichiers texte, etc.
+
+\subsubsection{SQL}
+\label{sec:orgae99cda}
+
+Nous utilisons dans ce projet une base de données pour gérer les ressources.
+Elles nous semble beaucoup plus adaptés que des fichiers textes et plus
+durables dans le temps.
+
+\subsection{Core}
+\label{sec:orgd1d43be}
+
+La classe Core correspond aux classes de calcul. Elles sont appelées
+lorsqu'on doit utiliser un processus.
+
+\subsection{GUI}
+\label{sec:orgc229483}
+\subsubsection{Freemarker}
+\label{sec:orgc60259a}
+
+Nous utilisons un système de template pour générer la réponse graphique au client.
+Pour cela nous utilisons le Freemarker.
+
+\subsection{Gestion états client}
+\label{sec:org06062ee}
+\subsubsection{Cookies}
+\label{sec:org1ef1d5d}
+
+Nous avons décidé d'utiliser les cookies pour permettre l'authentification
+de l'utilisateur. Lorsque l'utilisateur se connecte correctement (mot de
+passe et nom d'utilisateur OK) on donne au client son id sous forme de
+cookies qui donnera donc à chaque requête.
+
+\subsubsection{Sessions}
+\label{sec:orgb4cb53f}
+
+Côté serveur, nous ouvrons une session lors de la connexion du client.
+Ainsi nous savons si il est connecté ou non à chaque requête.
+
+\subsection{Gestion de statuts}
+\label{sec:org3b7f521}
+
 \section{Routes}
-\label{sec:org7dacbae}
+\label{sec:orgcf1a4ac}
 \subsection{login}
-\label{sec:org8bdbe68}
+\label{sec:org9021b12}
 \subsubsection{login}
-\label{sec:org9b51c1a}
+\label{sec:org10d58cb}
 
 \begin{quote}
 GET "\url{http://localhost:8081/login}"
@@ -216,11 +303,11 @@ Page de connexion qui sert aussi de page principale au site.
 POST "\url{http://localhost:8081/login}"
 \end{quote}
 
-Méthode de vérification des identifiants du professeur, renvoie sur l'ent du professeur en cas 
-de succes.
+Méthode de vérification des identifiants du professeur, renvoie sur l'ent
+du professeur en cas de succes.
 
 \subsubsection{logout}
-\label{sec:orgaa564a5}
+\label{sec:org0049bb2}
 
 \begin{quote}
 GET "\url{http://localhost:8081/logout}"
@@ -230,16 +317,16 @@ Méthode de déconnexion, redirige sur le login après la suppression de la sess
 et du cookie de connexion.
 
 \subsection{eleves}
-\label{sec:org5190c36}
+\label{sec:orgde6b2e6}
 
 \begin{quote}
 GET "\url{http://localhost:8081/eleves}"
 \end{quote}
 
-Affiche la liste des élèves avec leur gommette attribuées.
+Affiche la liste des élèves avec leurs gommettes attribuées.
 
 \subsubsection{eleve}
-\label{sec:orgf405e2d}
+\label{sec:orga8dd810}
 
 \begin{quote}
 GET "\url{http://localhost:8081/eleves/:id}"
@@ -248,7 +335,7 @@ GET "\url{http://localhost:8081/eleves/:id}"
 Affiche la page de profil de l'élève (nom, prénom, liste des gommettes attribuées).
 
 \subsubsection{create}
-\label{sec:org35c327a}
+\label{sec:org1a604fa}
 
 \begin{quote}
 GET "\url{http://localhost:8081/eleves/create}"
@@ -263,7 +350,7 @@ POST "\url{http://localhost:8081/eleves/create}"
 Création de l'élève dans la bdd. Un élève est représenté par son nom et son prénom.
 
 \subsubsection{delete}
-\label{sec:org7ca64c8}
+\label{sec:org133c1a7}
 
 \begin{quote}
 GET "\url{http://localhost:8081/eleves/delete:id}"
@@ -273,7 +360,7 @@ Méthode de suppression d'un élève dont l'id dans l'uri correspond à l'id de 
 redirige vers la liste d'élèves.
 
 \subsubsection{modify}
-\label{sec:org562fc68}
+\label{sec:org7f22fc5}
 
 \begin{quote}
 GET "\url{http://localhost:8081/eleves/modify/:id}"
@@ -288,26 +375,35 @@ POST "\url{http://localhost:8081/eleves/modify/:id}"
 Modification de l'élève dans la bdd. L'id est spécifié dans l'uri.
 
 \subsection{professeurs}
-\label{sec:org3685dee}
+\label{sec:org6a8910c}
+
+\begin{quote}
+GET "\url{http://localhost:8081/professeurs}"
+\end{quote}
+
+Affiche la liste des professeurs avec leurs gommettes attribuées.
+
 \subsubsection{professeur}
-\label{sec:org83091d6}
+\label{sec:org455ecbc}
 
 \begin{quote}
 GET "\url{http://localhost:8081/professeurs/:id}"
 \end{quote}
 
-Affiche la page personnelle du professeur. Elle sert de page d'accueil et d'ent au professeur.
-Elle possède les interaction de base telle que création d'un élève, création d'une gommette,
-attribution d'une gommette à un élève.
+Affiche la page personnelle du professeur. Elle sert de page d'accueil
+et d'ent au professeur. Elle possède les interaction de base telle que
+création d'un élève, création d'une gommette, attribution d'une gommette
+à un élève.
 
 \subsubsection{create}
-\label{sec:org686ea93}
+\label{sec:org34e950e}
 
 \begin{quote}
 GET "\url{http://localhost:8081/professeurs/create}"
 \end{quote}
 
-Affiche la page de création d'un professeur. Un professeur est représenté par : nom, prénom, nom d'utilisateur, mot de passe.
+Affiche la page de création d'un professeur. Un professeur est représenté
+par : nom, prénom, nom d'utilisateur, mot de passe.
 
 \begin{quote}
 POST "\url{http://localhost:8081/professeurs/create}"
@@ -316,7 +412,7 @@ POST "\url{http://localhost:8081/professeurs/create}"
 Création du professeur dans la bdd.
 
 \subsubsection{delete}
-\label{sec:org155f98a}
+\label{sec:org858a016}
 
 \begin{quote}
 GET "\url{http://localhost:8081/professeurs/delete/:id}"
@@ -325,7 +421,7 @@ GET "\url{http://localhost:8081/professeurs/delete/:id}"
 Création d'un professeur en bdd.
 
 \subsection{gommettes}
-\label{sec:org70398c3}
+\label{sec:org273d842}
 
 \begin{quote}
 GET "\url{http://localhost:8081/gommettes}"
@@ -334,7 +430,7 @@ GET "\url{http://localhost:8081/gommettes}"
 Affiche la page de la liste des gommettes.
 
 \subsubsection{create}
-\label{sec:org1a91f5b}
+\label{sec:orgc680f84}
 
 \begin{quote}
 GET "\url{http://localhost:8081/gommettes/create}"
@@ -349,22 +445,24 @@ POST "\url{http://localhost:8081/gommettes/create}"
 Création de la gommette en bdd.
 
 \subsubsection{delete}
-\label{sec:org488da5f}
+\label{sec:orgf35e9fe}
 
 \begin{quote}
 GET "\url{http://localhost:8081/gommettes/delete:id}"
 \end{quote}
 
-Méthode de suppression de la gommette, redirige vers la page de la liste des gommettes.
+Méthode de suppression de la gommette, redirige vers la page de la liste
+des gommettes.
 
 \subsubsection{modify}
-\label{sec:org9b9f074}
+\label{sec:org704f0d8}
 
 \begin{quote}
 GET "\url{http://localhost:8081/gommettes/modify/:id}"
 \end{quote}
 
-Méthode de suppression d'une gommette dont l'id dans l'uri correspond à l'id de la gommette dans la bdd.
+Méthode de suppression d'une gommette dont l'id dans l'uri correspond
+à l'id de la gommette dans la bdd.
 
 \begin{quote}
 POST "\url{http://localhost:8081/eleves/modify/:id}"
@@ -373,16 +471,17 @@ POST "\url{http://localhost:8081/eleves/modify/:id}"
 Modification de la gommette dans la bdd. L'id est spécifié dans l'uri.
 
 \subsubsection{attribuees}
-\label{sec:orgc12268c}
+\label{sec:orgc332927}
 \begin{enumerate}
 \item create
-\label{sec:org09997f7}
+\label{sec:org30a8c25}
 
 \begin{quote}
 GET "\url{http://localhost:8081/gommettes/attribuees/create/:id}"
 \end{quote}
 
-Affiche la page d'attribution d'une gommette pour l'élève dont l'id est spécifiée dans l'uri.
+Affiche la page d'attribution d'une gommette pour l'élève dont l'id est
+spécifiée dans l'uri.
 
 \begin{quote}
 POST "\url{http://localhost:8081/gommettes/attribuees/create/:id}"
@@ -391,16 +490,22 @@ POST "\url{http://localhost:8081/gommettes/attribuees/create/:id}"
 Création de la gommette attribuee en bdd.
 
 \item delete
-\label{sec:org59dafab}
+\label{sec:org60946ce}
 
 \begin{quote}
 GET "\url{http://localhost:8081/gommettes/attribuees/delete/:id}"
 \end{quote}
 
-Méthode de suppression de la gommette\textsubscript{attribuee}, l'id correspond à celui de l'élève à qui 
-la gommette a été attribuée.
+Méthode de suppression de la gommette attribuee, l'id correspond à celui
+de l'élève à qui la gommette a été attribuée.
 
+
+\noindent
+\newpage
+\setcounter{tocdepth}{5}
+\tableofcontents
 \newpage
 \listoffigures
+\listoftables
 \end{enumerate}
 \end{document}

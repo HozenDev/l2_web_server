@@ -1,0 +1,954 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-05-11 mer. 23:48 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Serveur Web</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="DUREL Enzo, VILLEPREUX Thibault" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Serveur Web</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org177915e">1. Introduction</a></li>
+<li><a href="#org2d3b040">2. Fonctionnalités importantes</a></li>
+<li><a href="#org545caa0">3. Principales classes</a></li>
+<li><a href="#orged45e11">4. Bases de données</a></li>
+<li><a href="#orgb5ff9d2">5. Technologies utilisées</a></li>
+<li><a href="#org55eab7e">6. Routes</a>
+<ul>
+<li><a href="#orgd86e491">6.1. login</a>
+<ul>
+<li><a href="#orge6961c8">6.1.1. login</a></li>
+<li><a href="#orgfaefbbb">6.1.2. logout</a></li>
+</ul>
+</li>
+<li><a href="#org45c5d8b">6.2. eleves</a>
+<ul>
+<li><a href="#orgd3766ca">6.2.1. eleve</a></li>
+<li><a href="#org9c86917">6.2.2. create</a></li>
+<li><a href="#org825107e">6.2.3. delete</a></li>
+<li><a href="#orga4028d4">6.2.4. modify</a></li>
+</ul>
+</li>
+<li><a href="#org964d953">6.3. professeurs</a>
+<ul>
+<li><a href="#orgdd633f1">6.3.1. professeur</a></li>
+<li><a href="#orgce0b11c">6.3.2. create</a></li>
+<li><a href="#orgedee7a4">6.3.3. delete</a></li>
+</ul>
+</li>
+<li><a href="#org00e7480">6.4. gommettes</a>
+<ul>
+<li><a href="#org802127d">6.4.1. create</a></li>
+<li><a href="#org455397a">6.4.2. delete</a></li>
+<li><a href="#orgcb1e023">6.4.3. modify</a></li>
+<li><a href="#org4f94582">6.4.4. attribuees</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org177915e" class="outline-2">
+<h2 id="org177915e"><span class="section-number-2">1</span> Introduction</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Nous avons créé un serveur.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2d3b040" class="outline-2">
+<h2 id="org2d3b040"><span class="section-number-2">2</span> Fonctionnalités importantes</h2>
+<div class="outline-text-2" id="text-2">
+<blockquote>
+<p>
+Quelles sont les fonctionnalités qui vous semblent importantes ?
+</p>
+</blockquote>
+
+<p>
+L'objectif est de créer un dispositif où les élèves peuvent consulter leur carnet dématérialisé. Il faut également prévoir la possibilité à un professeur de mettre des gommettes à un élève.
+</p>
+
+<p>
+Plus précisément, si le professeur est connecté il peut faire plusieurs actions :
+</p>
+<ul class="org-ul">
+<li>ajouter, supprimer ou modifier un élève (son nom et son prénom)</li>
+<li>lister, ajouter ou supprimer une gommette attribuée à un élève. Une gommette attribuée possède une date, un motif et une gommette principale qui elle-même contient une couleur (rouge, vert ou blanc) et une description générale.</li>
+<li>créer un nouveau professeur</li>
+<li>se déconnecter de sa session</li>
+</ul>
+
+<p>
+En revanche tout le monde a accès à la liste des gommettes configurées et la liste des gommettes de chaque élève, avec possibilité de voir le professeur ayant mis la gommette.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org545caa0" class="outline-2">
+<h2 id="org545caa0"><span class="section-number-2">3</span> Principales classes</h2>
+<div class="outline-text-2" id="text-3">
+
+<div class="figure">
+<p><img src="./uml.png" alt="uml.png" />
+</p>
+<p><span class="figure-number">Figure 1: </span>UML des entités</p>
+</div>
+
+<p>
+Image disponible <a href="./uml.png">ici</a> (./web-server/rapport/uml.png)
+</p>
+
+<blockquote>
+<p>
+Quelles vont être les principales classes de votre applications ?
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-orged45e11" class="outline-2">
+<h2 id="orged45e11"><span class="section-number-2">4</span> Bases de données</h2>
+<div class="outline-text-2" id="text-4">
+<blockquote>
+<p>
+Quelles vont être les tables de votre base de données ?
+</p>
+</blockquote>
+
+<p>
+Chaque classe principale possède une table dans la base de donnée relationnelle. 
+</p>
+
+<p>
+La table "PROFESSEURS" comme son nom l'indique représente la classe ProfesseurEntity, voici sa représentation avec quelques exemples :
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 1:</span> Table PROFESSEURS</caption>
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Id (INT, primary key)</th>
+<th scope="col" class="org-left">Firstname (VARCHAR 100)</th>
+<th scope="col" class="org-left">Lastname (VARCHAR 100)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">1</td>
+<td class="org-left">Paul</td>
+<td class="org-left">Boulanger</td>
+</tr>
+
+<tr>
+<td class="org-left">2</td>
+<td class="org-left">Jules</td>
+<td class="org-left">Verne</td>
+</tr>
+
+<tr>
+<td class="org-left">3</td>
+<td class="org-left">Georges</td>
+<td class="org-left">Lefou</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">Username (VARCHAR 100)</td>
+<td class="org-left">Password (VARCHAR 100)</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">paboulanger</td>
+<td class="org-left">1234</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">juverne</td>
+<td class="org-left">azerty1234</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">gelefou</td>
+<td class="org-left">password</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+La table "ELEVES" comme son nom l'indique représente la classe EleveEntity, voici sa représentation avec quelques exemples :
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 2:</span> Table ELEVES</caption>
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">Id (INT, primary key)</th>
+<th scope="col" class="org-left">Firstname ( VARCHAR 100)</th>
+<th scope="col" class="org-left">Lastname (VARCHAR 100)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">Jean</td>
+<td class="org-left">Valjean</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">Thomas</td>
+<td class="org-left">Ducarquoi</td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-left">Timothée</td>
+<td class="org-left">Louis</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>
+La table "GOMMETTES" comme son nom l'indique représente la classe GommetteEntity, voici sa représentation avec quelques exemples :
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 3:</span> Table GOMMETTES</caption>
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">Id (INT, primary key)</th>
+<th scope="col" class="org-left">Color (VARCHAR 50)</th>
+<th scope="col" class="org-left">Description (VARCHAR 100)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">Rouge</td>
+<td class="org-left">Bavardage</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">Vert</td>
+<td class="org-left">Excellente note</td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-left">Blanc</td>
+<td class="org-left">Nettoie les toilettes</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+La table "GOMMETTESATTRIBUEES" comme son nom l'indique représente la classe GommetteAttribueeEntity, voici sa représentation avec quelques exemples :
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption class="t-above"><span class="table-number">Table 4:</span> Table GOMMETTESATTRIBUEES</caption>
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">Id (INT, primary key)</th>
+<th scope="col" class="org-right">Id<sub>student</sub> (INT)</th>
+<th scope="col" class="org-left">Id<sub>prof</sub> (INT)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">1</td>
+<td class="org-left">1</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-right">2</td>
+<td class="org-left">1</td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-right">2</td>
+<td class="org-left">1</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">Id<sub>gommette</sub> (INT)</td>
+<td class="org-right">Date (VARCHAR 100)</td>
+<td class="org-left">Behavior (VACHAR 10<sub>000</sub>)</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">2</td>
+<td class="org-right">2022-02-09</td>
+<td class="org-left">Jette de la nourriture</td>
+</tr>
+
+<tr>
+<td class="org-right">1</td>
+<td class="org-right">2022-06-07</td>
+<td class="org-left">A fait tout ces devoirs sans fautes</td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-right">2022-04-07</td>
+<td class="org-left">A aidé son camarade a faire ses lacets</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+La date est en format VARCHAR. En effet, nous avons un formulaire HTML avec comme type une "date" afin de faciliter la saisie de date pour l'utilisateur grâce à l'apartirion d'un "calendrier dynamique". Cette date est en réalité une chaîne de caractère, ce qui nous arrange bien afin de la stockée dans la base de donnée.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb5ff9d2" class="outline-2">
+<h2 id="orgb5ff9d2"><span class="section-number-2">5</span> Technologies utilisées</h2>
+<div class="outline-text-2" id="text-5">
+<blockquote>
+<p>
+Quelles solutions technologiques envisagez-vous ?
+</p>
+</blockquote>
+</div>
+</div>
+
+<div id="outline-container-org55eab7e" class="outline-2">
+<h2 id="org55eab7e"><span class="section-number-2">6</span> Routes</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-orgd86e491" class="outline-3">
+<h3 id="orgd86e491"><span class="section-number-3">6.1</span> login</h3>
+<div class="outline-text-3" id="text-6-1">
+</div>
+<div id="outline-container-orge6961c8" class="outline-4">
+<h4 id="orge6961c8"><span class="section-number-4">6.1.1</span> login</h4>
+<div class="outline-text-4" id="text-6-1-1">
+<blockquote>
+<p>
+GET "<a href="http://localhost:8081/login">http://localhost:8081/login</a>"
+</p>
+</blockquote>
+
+<p>
+Page de connexion qui sert aussi de page principale au site.
+</p>
+
+<blockquote>
+<p>
+POST "<a href="http://localhost:8081/login">http://localhost:8081/login</a>"
+</p>
+</blockquote>
+
+<p>
+Méthode de vérification des identifiants du professeur, renvoie sur l'ent du professeur en cas 
+de succes.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfaefbbb" class="outline-4">
+<h4 id="orgfaefbbb"><span class="section-number-4">6.1.2</span> logout</h4>
+<div class="outline-text-4" id="text-6-1-2">
+<blockquote>
+<p>
+GET "<a href="http://localhost:8081/logout">http://localhost:8081/logout</a>"
+</p>
+</blockquote>
+
+<p>
+Méthode de déconnexion, redirige sur le login après la suppression de la session
+et du cookie de connexion.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org45c5d8b" class="outline-3">
+<h3 id="org45c5d8b"><span class="section-number-3">6.2</span> eleves</h3>
+<div class="outline-text-3" id="text-6-2">
+<blockquote>
+<p>
+GET "<a href="http://localhost:8081/eleves">http://localhost:8081/eleves</a>"
+</p>
+</blockquote>
+
+<p>
+Affiche la liste des élèves avec leurs gommettes attribuées.
+</p>
+</div>
+
+<div id="outline-container-orgd3766ca" class="outline-4">
+<h4 id="orgd3766ca"><span class="section-number-4">6.2.1</span> eleve</h4>
+<div class="outline-text-4" id="text-6-2-1">
+<blockquote>
+<p>
+GET "<a href="http://localhost:8081/eleves/:id">http://localhost:8081/eleves/:id</a>"
+</p>
+</blockquote>
+
+<p>
+Affiche la page de profil de l'élève (nom, prénom, liste des gommettes attribuées).
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9c86917" class="outline-4">
+<h4 id="org9c86917"><span class="section-number-4">6.2.2</span> create</h4>
+<div class="outline-text-4" id="text-6-2-2">
+<blockquote>
+<p>
+GET "<a href="http://localhost:8081/eleves/create">http://localhost:8081/eleves/create</a>"
+</p>
+</blockquote>
+
+<p>
+Affiche la page de création d'un élève (formulaire).
+</p>
+
+<blockquote>
+<p>
+POST "<a href="http://localhost:8081/eleves/create">http://localhost:8081/eleves/create</a>"
+</p>
+</blockquote>
+
+<p>
+Création de l'élève dans la bdd. Un élève est représenté par son nom et son prénom.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org825107e" class="outline-4">
+<h4 id="org825107e"><span class="section-number-4">6.2.3</span> delete</h4>
+<div class="outline-text-4" id="text-6-2-3">
+<blockquote>
+<p>
+GET "<a href="http://localhost:8081/eleves/delete:id">http://localhost:8081/eleves/delete:id</a>"
+</p>
+</blockquote>
+
+<p>
+Méthode de suppression d'un élève dont l'id dans l'uri correspond à l'id de l'élève dans la bdd.
+redirige vers la liste d'élèves.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga4028d4" class="outline-4">
+<h4 id="orga4028d4"><span class="section-number-4">6.2.4</span> modify</h4>
+<div class="outline-text-4" id="text-6-2-4">
+<blockquote>
+<p>
+GET "<a href="http://localhost:8081/eleves/modify/:id">http://localhost:8081/eleves/modify/:id</a>"
+</p>
+</blockquote>
+
+<p>
+Méthode de suppression d'un élève dont l'id dans l'uri correspond à l'id de l'élève dans la bdd.
+</p>
+
+<blockquote>
+<p>
+POST "<a href="http://localhost:8081/eleves/modify/:id">http://localhost:8081/eleves/modify/:id</a>"
+</p>
+</blockquote>
+
+<p>
+Modification de l'élève dans la bdd. L'id est spécifié dans l'uri.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org964d953" class="outline-3">
+<h3 id="org964d953"><span class="section-number-3">6.3</span> professeurs</h3>
+<div class="outline-text-3" id="text-6-3">
+<blockquote>
+<p>
+GET "<a href="http://localhost:8081/professeurs">http://localhost:8081/professeurs</a>"
+</p>
+</blockquote>
+
+<p>
+Affiche la liste des professeurs avec leurs gommettes attribuées.
+</p>
+</div>
+
+<div id="outline-container-orgdd633f1" class="outline-4">
+<h4 id="orgdd633f1"><span class="section-number-4">6.3.1</span> professeur</h4>
+<div class="outline-text-4" id="text-6-3-1">
+<blockquote>
+<p>
+GET "<a href="http://localhost:8081/professeurs/:id">http://localhost:8081/professeurs/:id</a>"
+</p>
+</blockquote>
+
+<p>
+Affiche la page personnelle du professeur. Elle sert de page d'accueil et d'ent au professeur.
+Elle possède les interaction de base telle que création d'un élève, création d'une gommette,
+attribution d'une gommette à un élève.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgce0b11c" class="outline-4">
+<h4 id="orgce0b11c"><span class="section-number-4">6.3.2</span> create</h4>
+<div class="outline-text-4" id="text-6-3-2">
+<blockquote>
+<p>
+GET "<a href="http://localhost:8081/professeurs/create">http://localhost:8081/professeurs/create</a>"
+</p>
+</blockquote>
+
+<p>
+Affiche la page de création d'un professeur. Un professeur est représenté par : nom, prénom, nom d'utilisateur, mot de passe.
+</p>
+
+<blockquote>
+<p>
+POST "<a href="http://localhost:8081/professeurs/create">http://localhost:8081/professeurs/create</a>"
+</p>
+</blockquote>
+
+<p>
+Création du professeur dans la bdd.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgedee7a4" class="outline-4">
+<h4 id="orgedee7a4"><span class="section-number-4">6.3.3</span> delete</h4>
+<div class="outline-text-4" id="text-6-3-3">
+<blockquote>
+<p>
+GET "<a href="http://localhost:8081/professeurs/delete/:id">http://localhost:8081/professeurs/delete/:id</a>"
+</p>
+</blockquote>
+
+<p>
+Création d'un professeur en bdd.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org00e7480" class="outline-3">
+<h3 id="org00e7480"><span class="section-number-3">6.4</span> gommettes</h3>
+<div class="outline-text-3" id="text-6-4">
+<blockquote>
+<p>
+GET "<a href="http://localhost:8081/gommettes">http://localhost:8081/gommettes</a>"
+</p>
+</blockquote>
+
+<p>
+Affiche la page de la liste des gommettes.
+</p>
+</div>
+
+<div id="outline-container-org802127d" class="outline-4">
+<h4 id="org802127d"><span class="section-number-4">6.4.1</span> create</h4>
+<div class="outline-text-4" id="text-6-4-1">
+<blockquote>
+<p>
+GET "<a href="http://localhost:8081/gommettes/create">http://localhost:8081/gommettes/create</a>"
+</p>
+</blockquote>
+
+<p>
+Affiche la page de création des gommettes.
+</p>
+
+<blockquote>
+<p>
+POST "<a href="http://localhost:8081/gommettes/create">http://localhost:8081/gommettes/create</a>"
+</p>
+</blockquote>
+
+<p>
+Création de la gommette en bdd.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org455397a" class="outline-4">
+<h4 id="org455397a"><span class="section-number-4">6.4.2</span> delete</h4>
+<div class="outline-text-4" id="text-6-4-2">
+<blockquote>
+<p>
+GET "<a href="http://localhost:8081/gommettes/delete:id">http://localhost:8081/gommettes/delete:id</a>"
+</p>
+</blockquote>
+
+<p>
+Méthode de suppression de la gommette, redirige vers la page de la liste des gommettes.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcb1e023" class="outline-4">
+<h4 id="orgcb1e023"><span class="section-number-4">6.4.3</span> modify</h4>
+<div class="outline-text-4" id="text-6-4-3">
+<blockquote>
+<p>
+GET "<a href="http://localhost:8081/gommettes/modify/:id">http://localhost:8081/gommettes/modify/:id</a>"
+</p>
+</blockquote>
+
+<p>
+Méthode de suppression d'une gommette dont l'id dans l'uri correspond à l'id de la gommette dans la bdd.
+</p>
+
+<blockquote>
+<p>
+POST "<a href="http://localhost:8081/eleves/modify/:id">http://localhost:8081/eleves/modify/:id</a>"
+</p>
+</blockquote>
+
+<p>
+Modification de la gommette dans la bdd. L'id est spécifié dans l'uri.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4f94582" class="outline-4">
+<h4 id="org4f94582"><span class="section-number-4">6.4.4</span> attribuees</h4>
+<div class="outline-text-4" id="text-6-4-4">
+</div>
+<ol class="org-ol">
+<li><a id="org6e6c294"></a>create<br />
+<div class="outline-text-5" id="text-6-4-4-1">
+<blockquote>
+<p>
+GET "<a href="http://localhost:8081/gommettes/attribuees/create/:id">http://localhost:8081/gommettes/attribuees/create/:id</a>"
+</p>
+</blockquote>
+
+<p>
+Affiche la page d'attribution d'une gommette pour l'élève dont l'id est spécifiée dans l'uri.
+</p>
+
+<blockquote>
+<p>
+POST "<a href="http://localhost:8081/gommettes/attribuees/create/:id">http://localhost:8081/gommettes/attribuees/create/:id</a>"
+</p>
+</blockquote>
+
+<p>
+Création de la gommette attribuee en bdd.
+</p>
+</div>
+</li>
+
+<li><a id="orgc713f07"></a>delete<br />
+<div class="outline-text-5" id="text-6-4-4-2">
+<blockquote>
+<p>
+GET "<a href="http://localhost:8081/gommettes/attribuees/delete/:id">http://localhost:8081/gommettes/attribuees/delete/:id</a>"
+</p>
+</blockquote>
+
+<p>
+Méthode de suppression de la gommette<sub>attribuee</sub>, l'id correspond à celui de l'élève à qui 
+la gommette a été attribuée.
+</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: DUREL Enzo, VILLEPREUX Thibault</p>
+<p class="date">Created: 2022-05-11 mer. 23:48</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
